@@ -138,6 +138,10 @@ public class AuctionServer
 	 * @param biddingDurationMs Bidding duration in milliseconds
 	 * @return A positive, unique listing ID if the <code>Item</code> listed successfully, otherwise -1
 	 */
+
+	//Precondition: 
+	//Postcondition:A positive, unique listing ID if the Item listed successfully, otherwise -1
+	//Exception:
 	public int submitItem(String sellerName, String itemName, int lowestBiddingPrice, int biddingDurationMs)
 	{
 		// TODO: IMPLEMENT CODE HERE
@@ -247,7 +251,7 @@ public class AuctionServer
 	 */
 
 	//Precondition:
-	//Postcondition: 
+	//Postcondition: True if there is no bid or the Item does not exist, false otherwise
 	//Exception: 
 	public Boolean itemUnbid(int listingID)
 	{

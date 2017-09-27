@@ -149,18 +149,21 @@ public class AuctionServer
 	 * @return A positive, unique listing ID if the <code>Item</code> listed successfully, otherwise -1
 	 */
 
-	//Precondition: 
+	//Precondition: None
 	//Postcondition:A positive, unique listing ID if the Item listed successfully, otherwise -1
-	//Exception:
+	//Exception: None
 	public int submitItem(String sellerName, String itemName, int lowestBiddingPrice, int biddingDurationMs)
 	{
+		*(itemlock)*
 		IF itemsUpForBidding < serverCapacity THEN
+			*(sellerlock)*
 			IF sellerName doesnt exist in sellers THEN
 				add seller to sellers and add item to the seller
 				set itemsPerSeller +1
 			ELSE 
 				IF seller in itemsPerSeller < maxSellerItems THEN
 					add item to the seller
+					set itemsPerSeller +1
 				ELSE 
 					return -1;
 		ELSE
@@ -210,6 +213,7 @@ public class AuctionServer
 	//Exception: 
 	public boolean submitBid(String bidderName, int listingID, int biddingAmount)
 	{
+		*(buyerlock)*
 		IF checkBidStatus = 2 THEN
 			IF itemsPerBuyer < maxBidCount THEN
 				IF bidderName != highestBidders THEN
@@ -263,6 +267,7 @@ public class AuctionServer
 				set itemsUpForBidding
 				set itemsPerBuyer
 				set itemsPerSeller
+				return 1
 			ELSE
 				return 3
 

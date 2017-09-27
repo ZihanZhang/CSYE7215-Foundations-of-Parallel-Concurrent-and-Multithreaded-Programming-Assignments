@@ -105,6 +105,12 @@ public class AuctionServer
 	// List of buyers and how many items on which they are currently bidding.
 	private HashMap<String, Integer> itemsPerBuyer = new HashMap<String, Integer>();
 
+	//seller list
+	private List<Seller> sellers = new ArrayList<>();
+
+	//bidder list
+	private List<Bidder> bidders = new ArrayList<>();
+
 
 
 	// Object used for instance synchronization if you need to do it at some point 
@@ -129,6 +135,10 @@ public class AuctionServer
 	 *  then you should probably be using that structure's intrinsic lock.
 	 */
 
+	private Object sellerlock = new Object();
+	private Object itemlock = new Object();
+	private Object buyerlock = new Object();
+
 
 	/**
 	 * Attempt to submit an <code>Item</code> to the auction
@@ -144,6 +154,18 @@ public class AuctionServer
 	//Exception:
 	public int submitItem(String sellerName, String itemName, int lowestBiddingPrice, int biddingDurationMs)
 	{
+		IF itemsUpForBidding < serverCapacity THEN
+			IF sellerName doesnt exist in sellers THEN
+				add seller to sellers and add item to the seller
+				set itemsPerSeller +1
+			ELSE 
+				IF seller in itemsPerSeller < maxSellerItems THEN
+					add item to the seller
+				ELSE 
+					return -1;
+		ELSE
+			return -1;
+			
 		// TODO: IMPLEMENT CODE HERE
 		// Some reminders:
 		//   Make sure there's room in the auction site.
@@ -166,6 +188,7 @@ public class AuctionServer
 	//Exception:  None
 	public List<Item> getItems()
 	{
+		return itemsUpForBidding
 		// TODO: IMPLEMENT CODE HERE
 		// Some reminders:
 		//    Don't forget that whatever you return is now outside of your control.
@@ -187,6 +210,22 @@ public class AuctionServer
 	//Exception: 
 	public boolean submitBid(String bidderName, int listingID, int biddingAmount)
 	{
+		IF checkBidStatus = 2 THEN
+			IF itemsPerBuyer < maxBidCount THEN
+				IF bidderName != highestBidders THEN
+					IF biddingAmount > lowestBiddingPrice THEN
+						set highestBidders
+						set itemsPerBuyer
+						return true;
+					ELSE 
+						return false;
+				ELSE 
+					return false;
+			ELSE
+				return false;
+		ELSE
+			return false;
+			
 		// TODO: IMPLEMENT CODE HERE
 		// Some reminders:
 		//   See if the item exists.
@@ -217,6 +256,16 @@ public class AuctionServer
 	//Exception: 
 	public int checkBidStatus(String bidderName, int listingID)
 	{
+		IF biddingopen THEN
+			return 2
+		ELSE
+			IF highestBids > lowestBiddingPrice THEN
+				set itemsUpForBidding
+				set itemsPerBuyer
+				set itemsPerSeller
+			ELSE
+				return 3
+
 		// TODO: IMPLEMENT CODE HERE
 		// Some reminders:
 		//   If the bidding is closed, clean up for that item.
@@ -239,6 +288,11 @@ public class AuctionServer
 	//Exception: 
 	public int itemPrice(int listingID)
 	{
+		IF highestBids > lowestBiddingPrice THEN
+			return highestBids
+		ELSE
+			return lowestBiddingPrice
+		
 		// TODO: IMPLEMENT CODE HERE
 		
 		return -1;
@@ -255,6 +309,10 @@ public class AuctionServer
 	//Exception: 
 	public Boolean itemUnbid(int listingID)
 	{
+		IF listingID in highestBids THEN
+			return false
+		ELSE
+			return true
 		// TODO: IMPLEMENT CODE HERE
 		
 		return false;

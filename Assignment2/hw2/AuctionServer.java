@@ -160,14 +160,21 @@ public class AuctionServer
 			IF sellerName doesnt exist in sellers THEN
 				add seller to sellers and add item to the seller
 				set itemsPerSeller +1
+				lastListingID = lastListingID + 1
+				return lastListingID
 			ELSE 
 				IF seller in itemsPerSeller < maxSellerItems THEN
 					add item to the seller
 					set itemsPerSeller +1
+					lastListingID = lastListingID + 1
+					return lastListingID
 				ELSE 
 					return -1;
+				ENDIF
+			ENDIF
 		ELSE
 			return -1;
+		ENDIF
 			
 		// TODO: IMPLEMENT CODE HERE
 		// Some reminders:
@@ -186,12 +193,13 @@ public class AuctionServer
 	 * @return A copy of the <code>List</code> of <code>Items</code>
 	 */
 
-	//Precondition:  No requirements
+	//Precondition:  None
 	//Postcondition:  Current items returned
 	//Exception:  None
 	public List<Item> getItems()
 	{
-		return itemsUpForBidding
+		newitemsUpForBidding = copy itemsUpForBidding   //in case of illegal operation on it
+		return newitemsUpForBidding
 		// TODO: IMPLEMENT CODE HERE
 		// Some reminders:
 		//    Don't forget that whatever you return is now outside of your control.
@@ -208,27 +216,33 @@ public class AuctionServer
 	 * @return True if successfully bid, false otherwise
 	 */
 
-	//Precondition: 
+	//Precondition: None
 	//Postcondition: if bid submitted successfully, return true. Else return false
-	//Exception: 
+	//Exception: None
 	public boolean submitBid(String bidderName, int listingID, int biddingAmount)
 	{
 		*(buyerlock)*
 		IF checkBidStatus = 2 THEN
 			IF itemsPerBuyer < maxBidCount THEN
 				IF bidderName != highestBidders THEN
+					*(sellerlock)*
 					IF biddingAmount > lowestBiddingPrice THEN
 						set highestBidders
+						set highestBids
 						set itemsPerBuyer
 						return true;
 					ELSE 
 						return false;
+					ENDIF
 				ELSE 
 					return false;
+				ENDIF
 			ELSE
 				return false;
+			ENDIF
 		ELSE
 			return false;
+		ENDIF
 			
 		// TODO: IMPLEMENT CODE HERE
 		// Some reminders:
@@ -253,23 +267,32 @@ public class AuctionServer
 	 * 3 (failed) If this <code>Bidder</code> did not win or the <code>Item</code> does not exist
 	 */
 
-	//Precondition: 
+	//Precondition: None
 	//Postcondition: 1(success) if bid is over and this bidder has won
 	//				 2 (open) if this Item is still up for auction
 	//				 3 (failed) If this Bidder did not win or the Item does not exist
-	//Exception: 
+	//Exception: None
 	public int checkBidStatus(String bidderName, int listingID)
 	{
 		IF biddingopen THEN
 			return 2
 		ELSE
-			IF highestBids > lowestBiddingPrice THEN
-				set itemsUpForBidding
-				set itemsPerBuyer
-				set itemsPerSeller
-				return 1
-			ELSE
+			IF listingID not in itemsUpForBidding THEN
 				return 3
+			ELSE
+				IF highestBidders != bidderName THEN
+					set itemsUpForBidding
+					set itemsPerBuyer
+					set itemsPerSeller
+					return 3
+				ELSE
+					set itemsUpForBidding
+					set itemsPerBuyer
+					set itemsPerSeller
+					return 1
+				ENDIF
+			ENDIF
+		ENDIF
 
 		// TODO: IMPLEMENT CODE HERE
 		// Some reminders:
@@ -288,15 +311,16 @@ public class AuctionServer
 	 * -1 if no <code>Item</code> exists
 	 */
 
-	//Precondition:
+	//Precondition: None
 	//Postcondition: The highest bid so far or the opening price if no bid has been made
-	//Exception: 
+	//Exception: None
 	public int itemPrice(int listingID)
 	{
 		IF highestBids > lowestBiddingPrice THEN
 			return highestBids
 		ELSE
 			return lowestBiddingPrice
+		ENDIF
 		
 		// TODO: IMPLEMENT CODE HERE
 		
@@ -309,15 +333,16 @@ public class AuctionServer
 	 * @return True if there is no bid or the <code>Item</code> does not exist, false otherwise
 	 */
 
-	//Precondition:
+	//Precondition: None
 	//Postcondition: True if there is no bid or the Item does not exist, false otherwise
-	//Exception: 
+	//Exception: None
 	public Boolean itemUnbid(int listingID)
 	{
 		IF listingID in highestBids THEN
 			return false
 		ELSE
 			return true
+		ENDIF
 		// TODO: IMPLEMENT CODE HERE
 		
 		return false;

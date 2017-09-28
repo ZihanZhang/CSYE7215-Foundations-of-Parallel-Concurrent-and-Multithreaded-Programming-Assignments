@@ -161,12 +161,16 @@ public class AuctionServer
 				add seller to sellers and add item to the seller
 				set itemsPerSeller +1
 				lastListingID = lastListingID + 1
+				set itemsUpForBidding
+				set itemsAndIDs
 				return lastListingID
 			ELSE 
 				IF seller in itemsPerSeller < maxSellerItems THEN
 					add item to the seller
 					set itemsPerSeller +1
 					lastListingID = lastListingID + 1
+					set itemsUpForBidding
+					set itemsAndIDs
 					return lastListingID
 				ELSE 
 					return -1;
@@ -277,18 +281,22 @@ public class AuctionServer
 		IF biddingopen THEN
 			return 2
 		ELSE
-			IF listingID not in itemsUpForBidding THEN
+			IF listingID not in itemsAndIDs THEN
 				return 3
 			ELSE
 				IF highestBidders != bidderName THEN
 					set itemsUpForBidding
+					set itemsAndIDs
 					set itemsPerBuyer
 					set itemsPerSeller
 					return 3
 				ELSE
 					set itemsUpForBidding
+					set itemsAndIDs
 					set itemsPerBuyer
 					set itemsPerSeller
+					set soldItemsCount
+					set revenue
 					return 1
 				ENDIF
 			ENDIF

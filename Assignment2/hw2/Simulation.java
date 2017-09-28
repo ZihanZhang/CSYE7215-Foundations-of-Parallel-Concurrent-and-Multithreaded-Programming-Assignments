@@ -59,7 +59,8 @@ public class Simulation
         {
             try
             {
-                sellerThreads[i].join();
+//                sellerThreads[i].join();
+                  bidderThreads[i].join();
             }
             catch (InterruptedException e)
             {
@@ -68,6 +69,12 @@ public class Simulation
         }
         
         // TODO: Add code as needed to debug
+        System.out.println(AuctionServer.getInstance().soldItemsCount);
+        System.out.println(AuctionServer.getInstance().revenue);
+
+        for (Item i : AuctionServer.getInstance().getItems()) {
+            System.out.println(i);
+        }
         
     }
 }

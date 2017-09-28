@@ -111,6 +111,9 @@ public class AuctionServer
 	//bidder list
 	private List<Bidder> bidders = new ArrayList<>();
 
+	//qualifiedSeller list
+	private HashMap<String, Integer> qualifiedSeller = new HashMap<>();
+
 
 
 	// Object used for instance synchronization if you need to do it at some point 
@@ -163,15 +166,20 @@ public class AuctionServer
 				lastListingID = lastListingID + 1
 				set itemsUpForBidding
 				set itemsAndIDs
+				set qualifiedSeller
 				return lastListingID
 			ELSE 
 				IF seller in itemsPerSeller < maxSellerItems THEN
-					add item to the seller
-					set itemsPerSeller +1
-					lastListingID = lastListingID + 1
-					set itemsUpForBidding
-					set itemsAndIDs
-					return lastListingID
+					IF sellerName in qualifiedSeller < 3
+						add item to the seller
+						set itemsPerSeller +1
+						lastListingID = lastListingID + 1
+						set itemsUpForBidding
+						set itemsAndIDs
+						set qualifiedSeller
+						return lastListingID
+					ELSE
+						return -1;
 				ELSE 
 					return -1;
 				ENDIF

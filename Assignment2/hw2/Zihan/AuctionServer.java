@@ -1,4 +1,4 @@
-package hw2;
+package Zihan;
 
 /**
  *  @author Zihan Zhang
@@ -144,6 +144,8 @@ public class AuctionServer
 	private Object sellerlock = new Object();
 	private Object itemlock = new Object();
 	private Object buyerlock = new Object();
+	private Object idlock = new Object();
+	private Object qualock = new Object();
 
 
 	/**
@@ -160,43 +162,90 @@ public class AuctionServer
 	//Exception: None
 	public int submitItem(String sellerName, String itemName, int lowestBiddingPrice, int biddingDurationMs)
 	{
-		*(itemlock)*
-		IF itemsUpForBidding < serverCapacity THEN
-			*(sellerlock)*
-			IF sellerName doesnt exist in sellers THEN
-				add seller to sellers and add item to the seller
-				set itemsPerSeller +1
-				lastListingID = lastListingID + 1
-				set itemsUpForBidding
-				set itemsAndIDs
-				set qualifiedSeller
-				return lastListingID
-			ELSE 
-				IF seller in itemsPerSeller < maxSellerItems THEN
-					IF sellerName in qualifiedSeller < 3
-						check items in itemsPerSeller
-						set nonBidSeller
-						IF sellerName in nonBidSeller < 5
-							add item to the seller
-							set itemsPerSeller +1
-							lastListingID = lastListingID + 1
-							set itemsUpForBidding
-							set itemsAndIDs
-							set qualifiedSeller
-							return lastListingID
-						ELSE
-							return -1;
-						ENDIF
-					ELSE
-						return -1;
-					ENDIF
-				ELSE 
-					return -1;
-				ENDIF
-			ENDIF
-		ELSE
-			return -1;
-		ENDIF
+//		*(itemlock)*
+//		IF itemsUpForBidding < serverCapacity THEN
+//			*(sellerlock)*
+//			IF sellerName doesnt exist in sellers THEN
+//				add seller to sellers and add item to the seller
+//				set itemsPerSeller +1
+//				lastListingID = lastListingID + 1
+//				set itemsUpForBidding
+//				set itemsAndIDs
+//				set qualifiedSeller
+//				return lastListingID
+//			ELSE
+//				IF seller in itemsPerSeller < maxSellerItems THEN
+//					IF sellerName in qualifiedSeller < 3
+//						check items in itemsPerSeller
+//						set nonBidSeller
+//						IF sellerName in nonBidSeller < 5
+//							add item to the seller
+//							set itemsPerSeller +1
+//							lastListingID = lastListingID + 1
+//							set itemsUpForBidding
+//							set itemsAndIDs
+//							set qualifiedSeller
+//							return lastListingID
+//						ELSE
+//							return -1;
+//						ENDIF
+//					ELSE
+//						return -1;
+//					ENDIF
+//				ELSE
+//					return -1;
+//				ENDIF
+//			ENDIF
+//		ELSE
+//			return -1;
+//		ENDIF
+
+		int itemsnum;
+		synchronized (itemlock) {
+			itemsnum = itemsUpForBidding.size();
+		}
+
+		int quanum;
+		synchronized (qualock) {
+		    quanum = qualifiedSeller.get(sellerName);
+        }
+		if (itemsnum < serverCapacity && quanum != Integer.MIN_VALUE) {
+		    synchronized (qualock) {
+                if (!itemsPerSeller.containsKey(sellerName)) {
+                    itemsPerSeller.put(sellerName, 0);
+                }
+
+                if (lowestBiddingPrice < 75) {
+                    if (qualifiedSeller.get(sellerName) >= 2) {
+                        qualifiedSeller.put(sellerName, Integer.MIN_VALUE);
+                        return -1;
+                    }
+                    else {
+                        qualifiedSeller.put(sellerName, qualifiedSeller.get(sellerName) + 1);
+                    }
+                }
+                else {
+                    qualifiedSeller.put(sellerName, 0);
+                }
+            }
+
+
+			int thisid;
+			synchronized (idlock) {
+				thisid = lastListingID + 1;
+			}
+
+			Item newitem = new Item(sellerName, itemName, thisid, lowestBiddingPrice, biddingDurationMs);
+
+			synchronized (itemlock) {
+                itemsUpForBidding.add(newitem);
+                itemsAndIDs.put(thisid, newitem);
+                itemsPerSeller.put(sellerName, itemsPerSeller.get(sellerName) + 1);
+            }
+
+			return thisid;
+		}
+
 			
 		// TODO: IMPLEMENT CODE HERE
 		// Some reminders:

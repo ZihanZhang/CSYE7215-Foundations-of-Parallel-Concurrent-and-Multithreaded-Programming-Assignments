@@ -395,17 +395,28 @@ public class AuctionServer
 //			ENDIF
 //		ENDIF
 
-        if (itemsUpForBidding.contains(bidderName)) {
-            if (itemsUpForBidding.get(listingID).biddingOpen()) {
+        List<Item> items = new ArrayList<Item>();
+
+        synchronized (itemlock) {
+            for (int i = 0; i < itemsUpForBidding.size(); i++) {
+                items.add(i, itemsUpForBidding.get(i));
+            }
+        }
+
+
+        if (items.contains(bidderName)) {
+            if (items.get(listingID).biddingOpen()) {
                 return 2;
             }
             else if (highestBidders.get(listingID).equals(bidderName)){
-                Item item = itemsUpForBidding.remove(listingID);
-                itemsPerBuyer.put(bidderName, itemsPerBuyer.get(bidderName) - 1);
-                itemsPerSeller.put(bidderName, itemsPerSeller.get(bidderName) - 1);
-                soldItemsCount++;
-                revenue = revenue + itemPrice(listingID);
-                return 1;
+                synchronized (itemlock) {
+                    Item item = itemsUpForBidding.remove(listingID);
+                    itemsPerBuyer.put(bidderName, itemsPerBuyer.get(bidderName) - 1);
+                    itemsPerSeller.put(bidderName, itemsPerSeller.get(bidderName) - 1);
+                    soldItemsCount++;
+                    revenue = revenue + itemPrice(listingID);
+                    return 1;
+                }
             }
             else {
                 return 3;
@@ -442,12 +453,15 @@ public class AuctionServer
 //		ELSE
 //			return lowestBiddingPrice
 //		ENDIF
-        Item item = itemsAndIDs.get(listingID);
-        if (highestBids.containsKey(listingID)) {
-            return highestBids.get(listingID);
-        }
-        else {
-            return item.lowestBiddingPrice();
+
+        synchronized (itemlock) {
+            Item item = itemsAndIDs.get(listingID);
+            if (!itemUnbid(listingID)) {
+                return highestBids.get(listingID);
+            }
+            else {
+                return item.lowestBiddingPrice();
+            }
         }
 
 		// TODO: IMPLEMENT CODE HERE
@@ -471,9 +485,10 @@ public class AuctionServer
 //		ELSE
 //			return true
 //		ENDIF
-
-        if (!highestBids.containsKey(listingID)) {
-            return true;
+        synchronized (itemlock) {
+            if (!highestBids.containsKey(listingID)) {
+                return true;
+            }
         }
 
 		// TODO: IMPLEMENT CODE HERE

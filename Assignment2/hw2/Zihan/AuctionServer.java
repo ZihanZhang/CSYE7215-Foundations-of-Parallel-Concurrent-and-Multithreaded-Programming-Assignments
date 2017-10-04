@@ -238,7 +238,7 @@ public class AuctionServer
 			Item newitem = new Item(sellerName, itemName, thisid, lowestBiddingPrice, biddingDurationMs);
 
 			synchronized (itemlock) {
-                itemsUpForBidding.add(newitem);
+                itemsUpForBidding.add(thisid, newitem);
                 itemsAndIDs.put(thisid, newitem);
                 itemsPerSeller.put(sellerName, itemsPerSeller.get(sellerName) + 1);
             }
@@ -269,13 +269,23 @@ public class AuctionServer
 	//Exception:  None
 	public List<Item> getItems()
 	{
-		newitemsUpForBidding = copy itemsUpForBidding   //in case of illegal operation on it
-		return newitemsUpForBidding
+//		newitemsUpForBidding = copy itemsUpForBidding   //in case of illegal operation on it
+//		return newitemsUpForBidding
+
+        List<Item> items;
+        synchronized (itemlock) {
+            items = new ArrayList<Item>();
+            for (Item it : itemsUpForBidding) {
+                items.add(it);
+            }
+        }
+
+
 		// TODO: IMPLEMENT CODE HERE
 		// Some reminders:
 		//    Don't forget that whatever you return is now outside of your control.
 		
-		return new ArrayList<Item>();
+		return items;
 	}
 
 
@@ -292,29 +302,45 @@ public class AuctionServer
 	//Exception: None
 	public boolean submitBid(String bidderName, int listingID, int biddingAmount)
 	{
-		*(buyerlock)*
-		IF checkBidStatus = 2 THEN
-			IF itemsPerBuyer < maxBidCount THEN
-				IF bidderName != highestBidders THEN
-					*(sellerlock)*
-					IF biddingAmount > lowestBiddingPrice THEN
-						set highestBidders
-						set highestBids
-						set itemsPerBuyer
-						return true;
-					ELSE 
-						return false;
-					ENDIF
-				ELSE 
-					return false;
-				ENDIF
-			ELSE
-				return false;
-			ENDIF
-		ELSE
-			return false;
-		ENDIF
-			
+//		*(buyerlock)*
+//		IF checkBidStatus = 2 THEN
+//			IF itemsPerBuyer < maxBidCount THEN
+//				IF bidderName != highestBidders THEN
+//					*(sellerlock)*
+//					IF biddingAmount > lowestBiddingPrice THEN
+//						set highestBidders
+//						set highestBids
+//						set itemsPerBuyer
+//						return true;
+//					ELSE
+//						return false;
+//					ENDIF
+//				ELSE
+//					return false;
+//				ENDIF
+//			ELSE
+//				return false;
+//			ENDIF
+//		ELSE
+//			return false;
+//		ENDIF
+        synchronized (buyerlock) {
+            if (checkBidStatus(bidderName, listingID) == 2) {
+                if (itemsPerBuyer.get(bidderName) < maxBidCount) {
+                    if (!bidderName.equals(highestBidders.get(listingID))) {
+                        if (biddingAmount > itemPrice(listingID)) {
+                            highestBidders.put(listingID, bidderName);
+                            highestBids.put(listingID, biddingAmount);
+                            itemsPerBuyer.put(bidderName, itemsPerBuyer.get(bidderName) + 1);
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+
+
+
 		// TODO: IMPLEMENT CODE HERE
 		// Some reminders:
 		//   See if the item exists.
@@ -345,29 +371,49 @@ public class AuctionServer
 	//Exception: None
 	public int checkBidStatus(String bidderName, int listingID)
 	{
-		IF biddingopen THEN
-			return 2
-		ELSE
-			IF listingID not in itemsAndIDs THEN
-				return 3
-			ELSE
-				IF highestBidders != bidderName THEN
-					set itemsUpForBidding
-					set itemsAndIDs
-					set itemsPerBuyer
-					set itemsPerSeller
-					return 3
-				ELSE
-					set itemsUpForBidding
-					set itemsAndIDs
-					set itemsPerBuyer
-					set itemsPerSeller
-					set soldItemsCount
-					set revenue
-					return 1
-				ENDIF
-			ENDIF
-		ENDIF
+//		IF biddingopen THEN
+//			return 2
+//		ELSE
+//			IF listingID not in itemsAndIDs THEN
+//				return 3
+//			ELSE
+//				IF highestBidders != bidderName THEN
+//					set itemsUpForBidding
+//					set itemsAndIDs
+//					set itemsPerBuyer
+//					set itemsPerSeller
+//					return 3
+//				ELSE
+//					set itemsUpForBidding
+//					set itemsAndIDs
+//					set itemsPerBuyer
+//					set itemsPerSeller
+//					set soldItemsCount
+//					set revenue
+//					return 1
+//				ENDIF
+//			ENDIF
+//		ENDIF
+
+        if (itemsUpForBidding.contains(bidderName)) {
+            if (itemsUpForBidding.get(listingID).biddingOpen()) {
+                return 2;
+            }
+            else if (highestBidders.get(listingID).equals(bidderName)){
+                Item item = itemsUpForBidding.remove(listingID);
+                itemsPerBuyer.put(bidderName, itemsPerBuyer.get(bidderName) - 1);
+                itemsPerSeller.put(bidderName, itemsPerSeller.get(bidderName) - 1);
+                soldItemsCount++;
+                revenue = revenue + itemPrice(listingID);
+                return 1;
+            }
+            else {
+                return 3;
+            }
+        }
+        else {
+            return 3;
+        }
 
 		// TODO: IMPLEMENT CODE HERE
 		// Some reminders:
@@ -376,7 +422,7 @@ public class AuctionServer
 		//     Decrease the count of items being bid on by the winning bidder if there was any...
 		//     Update the number of open bids for this seller
 		
-		return -1;
+//		return -1;
 	}
 
 	/**
@@ -391,15 +437,22 @@ public class AuctionServer
 	//Exception: None
 	public int itemPrice(int listingID)
 	{
-		IF highestBids > lowestBiddingPrice THEN
-			return highestBids
-		ELSE
-			return lowestBiddingPrice
-		ENDIF
-		
+//		IF highestBids > lowestBiddingPrice THEN
+//			return highestBids
+//		ELSE
+//			return lowestBiddingPrice
+//		ENDIF
+        Item item = itemsAndIDs.get(listingID);
+        if (highestBids.containsKey(listingID)) {
+            return highestBids.get(listingID);
+        }
+        else {
+            return item.lowestBiddingPrice();
+        }
+
 		// TODO: IMPLEMENT CODE HERE
 		
-		return -1;
+//		return -1;
 	}
 
 	/**
@@ -413,11 +466,16 @@ public class AuctionServer
 	//Exception: None
 	public Boolean itemUnbid(int listingID)
 	{
-		IF listingID in highestBids THEN
-			return false
-		ELSE
-			return true
-		ENDIF
+//		IF listingID in highestBids THEN
+//			return false
+//		ELSE
+//			return true
+//		ENDIF
+
+        if (!highestBids.containsKey(listingID)) {
+            return true;
+        }
+
 		// TODO: IMPLEMENT CODE HERE
 		
 		return false;

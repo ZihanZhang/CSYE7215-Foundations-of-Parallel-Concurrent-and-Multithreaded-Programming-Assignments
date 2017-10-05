@@ -209,6 +209,7 @@ public class AuctionServer
 		}
 
 		int quanum;
+		int nonbidnum;
 		synchronized (qualock) {
 		    if (qualifiedSeller.containsKey(sellerName)) {
                 quanum = qualifiedSeller.get(sellerName);
@@ -216,15 +217,33 @@ public class AuctionServer
             else {
 		        quanum = 0;
             }
+
+            if (nonBidSeller.containsKey(sellerName)) {
+		        nonbidnum = nonBidSeller.get(sellerName);
+            }
+            else {
+		        nonbidnum = 0;
+            }
+
         }
         System.out.println("itemsnum: " + itemsnum + " quanum: " + quanum);
 		synchronized (itemlock) {
 
-            if (itemsUpForBidding.size() < serverCapacity && quanum != Integer.MIN_VALUE) {
+            if (itemsUpForBidding.size() < serverCapacity && quanum != Integer.MIN_VALUE && nonbidnum != Integer.MIN_VALUE) {
 //                System.out.print(lowestBiddingPrice + " ");
                 synchronized (qualock) {
                     if (!itemsPerSeller.containsKey(sellerName)) {
                         itemsPerSeller.put(sellerName, 0);
+                    }
+
+                    for (Item item: itemsUpForBidding) {
+                        if (item.seller() == sellerName && !item.biddingOpen() && itemUnbid(item.listingID())) {
+                            nonBidSeller.put(sellerName, nonbidnum + 1);
+                        }
+                    }
+
+                    if (nonbidnum >= 4) {
+                        nonBidSeller.put(sellerName, Integer.MIN_VALUE);
                     }
 
                     if (lowestBiddingPrice < 75) {

@@ -5,8 +5,11 @@ package Zihan;
  */
 
 
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 
@@ -104,12 +107,12 @@ public class AuctionServer
 
 	// List of buyers and how many items on which they are currently bidding.
 	private HashMap<String, Integer> itemsPerBuyer = new HashMap<String, Integer>();
-
-	//seller list
-	private List<Seller> sellers = new ArrayList<>();
-
-	//bidder list
-	private List<Bidder> bidders = new ArrayList<>();
+//
+//	//seller list
+//	private List<Seller> sellers = new ArrayList<>();
+//
+//	//bidder list
+//	private List<Bidder> bidders = new ArrayList<>();
 
 	//qualifiedSeller list
 	private HashMap<String, Integer> qualifiedSeller = new HashMap<>();
@@ -207,43 +210,51 @@ public class AuctionServer
 
 		int quanum;
 		synchronized (qualock) {
-		    quanum = qualifiedSeller.get(sellerName);
+		    if (qualifiedSeller.containsKey(sellerName)) {
+                quanum = qualifiedSeller.get(sellerName);
+            }
+            else {
+		        quanum = 0;
+            }
         }
-		if (itemsnum < serverCapacity && quanum != Integer.MIN_VALUE) {
-		    synchronized (qualock) {
-                if (!itemsPerSeller.containsKey(sellerName)) {
-                    itemsPerSeller.put(sellerName, 0);
-                }
+        System.out.println("itemsnum: " + itemsnum + " quanum: " + quanum);
+		synchronized (itemlock) {
 
-                if (lowestBiddingPrice < 75) {
-                    if (qualifiedSeller.get(sellerName) >= 2) {
-                        qualifiedSeller.put(sellerName, Integer.MIN_VALUE);
-                        return -1;
+            if (itemsUpForBidding.size() < serverCapacity && quanum != Integer.MIN_VALUE) {
+//                System.out.print(lowestBiddingPrice + " ");
+                synchronized (qualock) {
+                    if (!itemsPerSeller.containsKey(sellerName)) {
+                        itemsPerSeller.put(sellerName, 0);
+                    }
+
+                    if (lowestBiddingPrice < 75) {
+                        if (quanum >= 2) {
+                            qualifiedSeller.put(sellerName, Integer.MIN_VALUE);
+                            return -1;
+                        }
+                        else {
+                            qualifiedSeller.put(sellerName, quanum + 1);
+                        }
                     }
                     else {
-                        qualifiedSeller.put(sellerName, qualifiedSeller.get(sellerName) + 1);
+                        qualifiedSeller.put(sellerName, 0);
                     }
                 }
-                else {
-                    qualifiedSeller.put(sellerName, 0);
-                }
-            }
 
 
-			int thisid;
-			synchronized (idlock) {
-				thisid = lastListingID + 1;
-			}
+                int thisid;
+                lastListingID = lastListingID + 1;
+                thisid = lastListingID;
+                System.out.println("this id: " + thisid);
+                Item newitem = new Item(sellerName, itemName, thisid, lowestBiddingPrice, biddingDurationMs);
 
-			Item newitem = new Item(sellerName, itemName, thisid, lowestBiddingPrice, biddingDurationMs);
-
-			synchronized (itemlock) {
-                itemsUpForBidding.add(thisid, newitem);
+                itemsUpForBidding.add(newitem);
                 itemsAndIDs.put(thisid, newitem);
                 itemsPerSeller.put(sellerName, itemsPerSeller.get(sellerName) + 1);
-            }
 
-			return thisid;
+
+                return thisid;
+            }
 		}
 
 			
@@ -324,19 +335,24 @@ public class AuctionServer
 //		ELSE
 //			return false;
 //		ENDIF
+        itemsPerBuyer.put(bidderName, 0);
+
+        System.out.println("Bidding Processing");
         synchronized (buyerlock) {
-            if (checkBidStatus(bidderName, listingID) == 2) {
+            if (itemsAndIDs.get(listingID).biddingOpen()) {
                 if (itemsPerBuyer.get(bidderName) < maxBidCount) {
                     if (!bidderName.equals(highestBidders.get(listingID))) {
                         if (biddingAmount > itemPrice(listingID)) {
                             highestBidders.put(listingID, bidderName);
                             highestBids.put(listingID, biddingAmount);
                             itemsPerBuyer.put(bidderName, itemsPerBuyer.get(bidderName) + 1);
+                            System.out.println("Bidding Succeeded");
                             return true;
                         }
                     }
                 }
             }
+//            System.out.println(itemsUpForBidding.size());
         }
 
 
@@ -351,7 +367,7 @@ public class AuctionServer
 		//   See if the new bid isn't better than the existing/opening bid floor.
 		//   Decrement the former winning bidder's count
 		//   Put your bid in place
-		
+		System.out.println("Bidding Failed");
 		return false;
 	}
 
@@ -395,24 +411,24 @@ public class AuctionServer
 //			ENDIF
 //		ENDIF
 
-        List<Item> items = new ArrayList<Item>();
+        HashSet<Integer> itemsUpForBiddingAndID = new HashSet<>();
 
         synchronized (itemlock) {
-            for (int i = 0; i < itemsUpForBidding.size(); i++) {
-                items.add(i, itemsUpForBidding.get(i));
+            for (Item item: itemsUpForBidding) {
+                itemsUpForBiddingAndID.add(item.listingID());
             }
         }
 
 
-        if (items.contains(bidderName)) {
-            if (items.get(listingID).biddingOpen()) {
+        if (itemsUpForBiddingAndID.contains(listingID)) {
+            if (itemsAndIDs.get(listingID).biddingOpen()) {
                 return 2;
             }
             else if (highestBidders.get(listingID).equals(bidderName)){
                 synchronized (itemlock) {
-                    Item item = itemsUpForBidding.remove(listingID);
+                    itemsUpForBidding.remove(itemsAndIDs.get(listingID));
                     itemsPerBuyer.put(bidderName, itemsPerBuyer.get(bidderName) - 1);
-                    itemsPerSeller.put(bidderName, itemsPerSeller.get(bidderName) - 1);
+                    itemsPerSeller.put(bidderName, itemsPerSeller.get(itemsAndIDs.get(listingID).seller()) - 1);
                     soldItemsCount++;
                     revenue = revenue + itemPrice(listingID);
                     return 1;

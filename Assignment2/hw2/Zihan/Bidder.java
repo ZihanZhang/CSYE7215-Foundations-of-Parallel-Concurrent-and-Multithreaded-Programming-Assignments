@@ -70,6 +70,7 @@ public class Bidder implements Client
                 
                 int index = rand.nextInt(items.size());
 
+                System.out.println("itemssize: " + items.size());
                 Item item = items.get(index);
                 items.remove(index);
 
@@ -102,8 +103,10 @@ public class Bidder implements Client
 
             List<Item> newActiveBids = new ArrayList<Item>();
             Hashtable<Item, Integer> newActiveBidPrices = new Hashtable<Item, Integer>();
+            System.out.println("size: " + activeBids.size());
             for (Item bid : activeBids)
             {
+                System.out.println("status: " + server.checkBidStatus(this.name(), bid.listingID()));
                 switch (server.checkBidStatus(this.name(), bid.listingID()))
                 {
                     case 1:

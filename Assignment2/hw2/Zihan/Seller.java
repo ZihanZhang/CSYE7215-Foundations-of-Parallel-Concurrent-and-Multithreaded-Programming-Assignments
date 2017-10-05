@@ -51,7 +51,7 @@ public class Seller implements Client
 	    	String item = this.items.get(index);
 	    	
 	    	int listingID = server.submitItem(this.name(), item, this.rand.nextInt(100), this.rand.nextInt(100) + 100);  
-	    	
+//	    	System.out.println(listingID);
 	    	if (listingID != -1)
 	    	{
 	    		this.items.remove(index);

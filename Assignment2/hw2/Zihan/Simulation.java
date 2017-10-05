@@ -69,12 +69,12 @@ public class Simulation
         }
         
         // TODO: Add code as needed to debug
-        System.out.println(AuctionServer.getInstance().soldItemsCount());
-        System.out.println(AuctionServer.getInstance().revenue());
-
-        for (Item i : AuctionServer.getInstance().getItems()) {
-            System.out.println(i);
-        }
+//        System.out.println(AuctionServer.getInstance().soldItemsCount());
+//        System.out.println(AuctionServer.getInstance().revenue());
+//
+//        for (Item i : AuctionServer.getInstance().getItems()) {
+//            System.out.println(i);
+//        }
         
     }
 }

@@ -226,7 +226,7 @@ public class AuctionServer
             }
 
         }
-        System.out.println("itemsnum: " + itemsnum + " quanum: " + quanum);
+//        System.out.println("itemsnum: " + itemsnum + " quanum: " + quanum);
 		synchronized (itemlock) {
 
             if (itemsUpForBidding.size() < serverCapacity && quanum != Integer.MIN_VALUE && nonbidnum != Integer.MIN_VALUE) {
@@ -234,6 +234,10 @@ public class AuctionServer
                 synchronized (qualock) {
                     if (!itemsPerSeller.containsKey(sellerName)) {
                         itemsPerSeller.put(sellerName, 0);
+                    }
+
+                    if (itemsPerSeller.get(sellerName) >= maxSellerItems) {
+                        return -1;
                     }
 
                     for (Item item: itemsUpForBidding) {
@@ -264,7 +268,7 @@ public class AuctionServer
                 int thisid;
                 lastListingID = lastListingID + 1;
                 thisid = lastListingID;
-                System.out.println("this id: " + thisid);
+//                System.out.println("this id: " + thisid);
                 Item newitem = new Item(sellerName, itemName, thisid, lowestBiddingPrice, biddingDurationMs);
 
                 itemsUpForBidding.add(newitem);
@@ -356,7 +360,7 @@ public class AuctionServer
 //		ENDIF
         itemsPerBuyer.put(bidderName, 0);
 
-        System.out.println("Bidding Processing");
+//        System.out.println("Bidding Processing");
         synchronized (buyerlock) {
             if (itemsAndIDs.get(listingID).biddingOpen()) {
                 if (itemsPerBuyer.get(bidderName) < maxBidCount) {
@@ -365,7 +369,7 @@ public class AuctionServer
                             highestBidders.put(listingID, bidderName);
                             highestBids.put(listingID, biddingAmount);
                             itemsPerBuyer.put(bidderName, itemsPerBuyer.get(bidderName) + 1);
-                            System.out.println("Bidding Succeeded");
+//                            System.out.println("Bidding Succeeded");
                             return true;
                         }
                     }
@@ -386,7 +390,7 @@ public class AuctionServer
 		//   See if the new bid isn't better than the existing/opening bid floor.
 		//   Decrement the former winning bidder's count
 		//   Put your bid in place
-		System.out.println("Bidding Failed");
+//		System.out.println("Bidding Failed");
 		return false;
 	}
 

@@ -7,8 +7,7 @@ package Zihan;
  */ 
 public class Simulation
 {
-    public static void main(String[] args)
-    {                
+    public static void main(String[] args) throws InterruptedException {
         int nrSellers = 50;
         int nrBidders = 20;
         
@@ -16,7 +15,9 @@ public class Simulation
         Thread[] bidderThreads = new Thread[nrBidders];
         Seller[] sellers = new Seller[nrSellers];
         Bidder[] bidders = new Bidder[nrBidders];
-        
+
+        System.out.println("Please wait for 5 seconds");
+
         // Start the sellers
         for (int i=0; i<nrSellers; ++i)
         {
@@ -67,7 +68,7 @@ public class Simulation
                 e.printStackTrace();
             }
         }
-        
+
         // TODO: Add code as needed to debug
 //        System.out.println(AuctionServer.getInstance().soldItemsCount());
 //        System.out.println(AuctionServer.getInstance().revenue());
@@ -75,6 +76,10 @@ public class Simulation
 //        for (Item i : AuctionServer.getInstance().getItems()) {
 //            System.out.println(i);
 //        }
-        
+//        Thread.sleep(5000);
+        System.out.println("**************************************");
+        System.out.println("Total Revenue: " + AuctionServer.getInstance().revenue());
+        System.out.println("Total Items: " + AuctionServer.getInstance().soldItemsCount());
+        System.out.println("**************************************");
     }
 }

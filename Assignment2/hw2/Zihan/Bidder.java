@@ -62,9 +62,9 @@ public class Bidder implements Client
 
         for (int i = 0; (i < cycles && cash > 0) || activeBids.size() > 0; ++i)
         {
-            System.out.println("cycle: " + i);
+//            System.out.println("cycle: " + i);
             List<Item> items = server.getItems();
-            System.out.println("items left: " + items.size());
+//            System.out.println("items left: " + items.size());
             if (items.size() > this.mostItemsAvailable) { this.mostItemsAvailable = items.size(); }
 
             while (items.size() > 0)
@@ -104,7 +104,7 @@ public class Bidder implements Client
 
             List<Item> newActiveBids = new ArrayList<Item>();
             Hashtable<Item, Integer> newActiveBidPrices = new Hashtable<Item, Integer>();
-            System.out.println("size: " + activeBids.size());
+//            System.out.println("size: " + activeBids.size());
             for (Item bid : activeBids)
             {
 //                System.out.println("status: " + server.checkBidStatus(this.name(), bid.listingID()));
@@ -115,20 +115,20 @@ public class Bidder implements Client
                         int finalPrice = activeBidPrices.get(bid);
                         this.cash -= finalPrice;
                         sumActiveBids -= finalPrice;
-                        System.out.println("Success! revenue: " + server.revenue());
+//                        System.out.println("Success! revenue: " + server.revenue());
 
                         break;
 
                     case 2:
                         // Open
-                        System.out.println("Item's still open");
+//                        System.out.println("Item's still open");
                         newActiveBids.add(bid);
                         newActiveBidPrices.put(bid, activeBidPrices.get(bid));
                         break;
 
                     case 3:
                         // Failed
-                        System.out.println("Check failed");
+//                        System.out.println("Check failed");
                         sumActiveBids -= activeBidPrices.get(bid);
                         break;
 

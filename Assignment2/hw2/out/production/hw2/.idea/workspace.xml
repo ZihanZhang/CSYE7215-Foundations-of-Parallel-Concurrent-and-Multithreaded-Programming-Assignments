@@ -30,8 +30,28 @@
       <file leaf-file-name="Simulation.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Zihan/Simulation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1054">
-              <caret line="62" column="42" lean-forward="false" selection-start-line="62" selection-start-column="42" selection-end-line="62" selection-end-column="42" />
+            <state relative-caret-position="527">
+              <caret line="79" column="89" lean-forward="false" selection-start-line="79" selection-start-column="89" selection-end-line="79" selection-end-column="89" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Seller.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Zihan/Seller.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="21" column="25" lean-forward="false" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Bidder.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Zihan/Bidder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1955">
+              <caret line="130" column="56" lean-forward="false" selection-start-line="130" selection-start-column="56" selection-end-line="130" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -40,15 +60,9 @@
       <file leaf-file-name="AuctionServer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Zihan/AuctionServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="213" column="27" lean-forward="false" selection-start-line="213" selection-start-column="27" selection-end-line="213" selection-end-column="27" />
-              <folding>
-                <element signature="e#1860#1866#0" expanded="true" />
-                <element signature="e#2373#2391#0" expanded="true" />
-                <element signature="e#2589#2606#0" expanded="true" />
-                <element signature="e#2910#2927#0" expanded="true" />
-                <element signature="e#11683#11689#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="289">
+              <caret line="455" column="61" lean-forward="true" selection-start-line="455" selection-start-column="61" selection-end-line="455" selection-end-column="61" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -56,9 +70,22 @@
       <file leaf-file-name="Item.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Zihan/Item.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-8">
-              <caret line="74" column="9" lean-forward="false" selection-start-line="74" selection-start-column="9" selection-end-line="74" selection-end-column="9" />
-              <folding />
+            <state relative-caret-position="612">
+              <caret line="47" column="22" lean-forward="false" selection-start-line="47" selection-start-column="22" selection-end-line="47" selection-end-column="22" />
+              <folding>
+                <element signature="e#677#678#0" expanded="false" />
+                <element signature="e#705#706#0" expanded="false" />
+                <element signature="e#732#733#0" expanded="false" />
+                <element signature="e#755#756#0" expanded="false" />
+                <element signature="e#784#785#0" expanded="false" />
+                <element signature="e#814#815#0" expanded="false" />
+                <element signature="e#929#930#0" expanded="false" />
+                <element signature="e#968#969#0" expanded="false" />
+                <element signature="e#1704#1705#0" expanded="false" />
+                <element signature="e#1735#1736#0" expanded="false" />
+                <element signature="e#1777#1778#0" expanded="false" />
+                <element signature="e#1830#1831#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -71,6 +98,14 @@
       <find>seller</find>
       <find>lowestbi</find>
       <find>highestbids</find>
+      <find>system.out</find>
+      <find>checkbi</find>
+      <find>this id</find>
+      <find>itemssize</find>
+      <find>revenue</find>
+      <find>status</find>
+      <find>re</find>
+      <find>rev</find>
     </findStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -81,8 +116,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Zihan/Simulation.java" />
+        <option value="$PROJECT_DIR$/Zihan/Seller.java" />
+        <option value="$PROJECT_DIR$/Zihan/Bidder.java" />
         <option value="$PROJECT_DIR$/Zihan/AuctionServer.java" />
+        <option value="$PROJECT_DIR$/Zihan/Simulation.java" />
       </list>
     </option>
   </component>
@@ -141,6 +178,21 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hw2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hw2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -169,21 +221,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hw2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hw2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="Scope" />
     </panes>
   </component>
@@ -194,7 +231,7 @@
     <property name="js.eslint.eslintPackage" value="" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
-    <property name="SearchEverywhereHistoryKey" value="it&#9;FILE&#9;file:///Users/ZihanZhang/Documents/Projects/Github/Multithread-Programming Assignments/Assignment2/hw2/Zihan/Item.java" />
+    <property name="SearchEverywhereHistoryKey" value="si&#9;FILE&#9;file:///Users/ZihanZhang/Documents/Projects/Github/Multithread-Programming Assignments/Assignment2/hw2/Zihan/Simulation.java&#10;it&#9;FILE&#9;file:///Users/ZihanZhang/Documents/Projects/Github/Multithread-Programming Assignments/Assignment2/hw2/Zihan/Item.java" />
   </component>
   <component name="RunManager" selected="Application.Simulation">
     <configuration default="false" name="Simulation" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -673,6 +710,9 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="3d8b1b49-07d8-4691-aa1f-2920246d3185" name="Default" comment="" />
@@ -691,12 +731,14 @@
       <workItem from="1507016671958" duration="729000" />
       <workItem from="1507017423099" duration="44000" />
       <workItem from="1507017489779" duration="37000" />
-      <workItem from="1507049488565" duration="7814000" />
+      <workItem from="1507049488565" duration="31157000" />
+      <workItem from="1507240641468" duration="3127000" />
+      <workItem from="1507315201155" duration="160000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18661000" />
+    <option name="totallyTimeSpent" value="45291000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -714,32 +756,32 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15508886" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15831988" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -749,7 +791,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="antWorkspaceConfiguration">
@@ -765,16 +809,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Zihan/Seller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="21" column="25" lean-forward="true" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Zihan/Bidder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1955">
+          <caret line="130" column="56" lean-forward="false" selection-start-line="130" selection-start-column="56" selection-end-line="130" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Zihan/AuctionServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3150">
-          <caret line="221" column="21" lean-forward="false" selection-start-line="221" selection-start-column="21" selection-end-line="221" selection-end-column="21" />
+        <state relative-caret-position="7361">
+          <caret line="447" column="51" lean-forward="true" selection-start-line="447" selection-start-column="51" selection-end-line="447" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Zihan/Item.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="47" column="22" lean-forward="false" selection-start-line="47" selection-start-column="22" selection-end-line="47" selection-end-column="22" />
           <folding>
-            <element signature="e#1860#1866#0" expanded="true" />
-            <element signature="e#2373#2391#0" expanded="true" />
-            <element signature="e#2589#2606#0" expanded="true" />
-            <element signature="e#2910#2927#0" expanded="true" />
-            <element signature="e#11683#11689#0" expanded="true" />
+            <element signature="e#677#678#0" expanded="false" />
+            <element signature="e#705#706#0" expanded="false" />
+            <element signature="e#732#733#0" expanded="false" />
+            <element signature="e#755#756#0" expanded="false" />
+            <element signature="e#784#785#0" expanded="false" />
+            <element signature="e#814#815#0" expanded="false" />
+            <element signature="e#929#930#0" expanded="false" />
+            <element signature="e#968#969#0" expanded="false" />
+            <element signature="e#1704#1705#0" expanded="false" />
+            <element signature="e#1735#1736#0" expanded="false" />
+            <element signature="e#1777#1778#0" expanded="false" />
+            <element signature="e#1830#1831#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -791,13 +866,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3150">
           <caret line="221" column="21" lean-forward="false" selection-start-line="221" selection-start-column="21" selection-end-line="221" selection-end-column="21" />
-          <folding>
-            <element signature="e#1860#1866#0" expanded="true" />
-            <element signature="e#2373#2391#0" expanded="true" />
-            <element signature="e#2589#2606#0" expanded="true" />
-            <element signature="e#2910#2927#0" expanded="true" />
-            <element signature="e#11683#11689#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -813,13 +882,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3150">
           <caret line="221" column="21" lean-forward="false" selection-start-line="221" selection-start-column="21" selection-end-line="221" selection-end-column="21" />
-          <folding>
-            <element signature="e#1860#1866#0" expanded="true" />
-            <element signature="e#2373#2391#0" expanded="true" />
-            <element signature="e#2589#2606#0" expanded="true" />
-            <element signature="e#2910#2927#0" expanded="true" />
-            <element signature="e#11683#11689#0" expanded="true" />
-          </folding>
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Zihan/Simulation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Zihan/AuctionServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3150">
+          <caret line="221" column="21" lean-forward="false" selection-start-line="221" selection-start-column="21" selection-end-line="221" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -835,13 +914,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="960">
           <caret line="75" column="0" lean-forward="true" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
-          <folding>
-            <element signature="e#1860#1866#0" expanded="true" />
-            <element signature="e#2373#2391#0" expanded="true" />
-            <element signature="e#2589#2606#0" expanded="true" />
-            <element signature="e#2910#2927#0" expanded="true" />
-            <element signature="e#11683#11689#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -857,13 +930,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1860#1866#0" expanded="true" />
-            <element signature="e#2373#2391#0" expanded="true" />
-            <element signature="e#2589#2606#0" expanded="true" />
-            <element signature="e#2910#2927#0" expanded="true" />
-            <element signature="e#11683#11689#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -887,7 +954,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="19" column="93" lean-forward="false" selection-start-line="19" selection-start-column="93" selection-end-line="19" selection-end-column="93" />
-          <folding />
+          <folding>
+            <element signature="e#677#678#0" expanded="false" />
+            <element signature="e#705#706#0" expanded="false" />
+            <element signature="e#732#733#0" expanded="false" />
+            <element signature="e#755#756#0" expanded="false" />
+            <element signature="e#784#785#0" expanded="false" />
+            <element signature="e#814#815#0" expanded="false" />
+            <element signature="e#929#930#0" expanded="false" />
+            <element signature="e#968#969#0" expanded="false" />
+            <element signature="e#1704#1705#0" expanded="false" />
+            <element signature="e#1735#1736#0" expanded="false" />
+            <element signature="e#1777#1778#0" expanded="false" />
+            <element signature="e#1830#1831#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -911,13 +991,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1860#1866#0" expanded="true" />
-            <element signature="e#2373#2391#0" expanded="true" />
-            <element signature="e#2589#2606#0" expanded="true" />
-            <element signature="e#2910#2927#0" expanded="true" />
-            <element signature="e#11683#11689#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -941,7 +1015,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="19" column="93" lean-forward="false" selection-start-line="19" selection-start-column="93" selection-end-line="19" selection-end-column="93" />
-          <folding />
+          <folding>
+            <element signature="e#677#678#0" expanded="false" />
+            <element signature="e#705#706#0" expanded="false" />
+            <element signature="e#732#733#0" expanded="false" />
+            <element signature="e#755#756#0" expanded="false" />
+            <element signature="e#784#785#0" expanded="false" />
+            <element signature="e#814#815#0" expanded="false" />
+            <element signature="e#929#930#0" expanded="false" />
+            <element signature="e#968#969#0" expanded="false" />
+            <element signature="e#1704#1705#0" expanded="false" />
+            <element signature="e#1735#1736#0" expanded="false" />
+            <element signature="e#1777#1778#0" expanded="false" />
+            <element signature="e#1830#1831#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -965,13 +1052,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1860#1866#0" expanded="true" />
-            <element signature="e#2373#2391#0" expanded="true" />
-            <element signature="e#2589#2606#0" expanded="true" />
-            <element signature="e#2910#2927#0" expanded="true" />
-            <element signature="e#11683#11689#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -995,7 +1076,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="19" column="93" lean-forward="false" selection-start-line="19" selection-start-column="93" selection-end-line="19" selection-end-column="93" />
-          <folding />
+          <folding>
+            <element signature="e#677#678#0" expanded="false" />
+            <element signature="e#705#706#0" expanded="false" />
+            <element signature="e#732#733#0" expanded="false" />
+            <element signature="e#755#756#0" expanded="false" />
+            <element signature="e#784#785#0" expanded="false" />
+            <element signature="e#814#815#0" expanded="false" />
+            <element signature="e#929#930#0" expanded="false" />
+            <element signature="e#968#969#0" expanded="false" />
+            <element signature="e#1704#1705#0" expanded="false" />
+            <element signature="e#1735#1736#0" expanded="false" />
+            <element signature="e#1777#1778#0" expanded="false" />
+            <element signature="e#1830#1831#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1019,13 +1113,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1860#1866#0" expanded="true" />
-            <element signature="e#2373#2391#0" expanded="true" />
-            <element signature="e#2589#2606#0" expanded="true" />
-            <element signature="e#2910#2927#0" expanded="true" />
-            <element signature="e#11683#11689#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1049,7 +1137,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="19" column="93" lean-forward="false" selection-start-line="19" selection-start-column="93" selection-end-line="19" selection-end-column="93" />
-          <folding />
+          <folding>
+            <element signature="e#677#678#0" expanded="false" />
+            <element signature="e#705#706#0" expanded="false" />
+            <element signature="e#732#733#0" expanded="false" />
+            <element signature="e#755#756#0" expanded="false" />
+            <element signature="e#784#785#0" expanded="false" />
+            <element signature="e#814#815#0" expanded="false" />
+            <element signature="e#929#930#0" expanded="false" />
+            <element signature="e#968#969#0" expanded="false" />
+            <element signature="e#1704#1705#0" expanded="false" />
+            <element signature="e#1735#1736#0" expanded="false" />
+            <element signature="e#1777#1778#0" expanded="false" />
+            <element signature="e#1830#1831#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1073,13 +1174,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1860#1866#0" expanded="true" />
-            <element signature="e#2373#2391#0" expanded="true" />
-            <element signature="e#2589#2606#0" expanded="true" />
-            <element signature="e#2910#2927#0" expanded="true" />
-            <element signature="e#11683#11689#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1103,7 +1198,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="e#677#678#0" expanded="false" />
+            <element signature="e#705#706#0" expanded="false" />
+            <element signature="e#732#733#0" expanded="false" />
+            <element signature="e#755#756#0" expanded="false" />
+            <element signature="e#784#785#0" expanded="false" />
+            <element signature="e#814#815#0" expanded="false" />
+            <element signature="e#929#930#0" expanded="false" />
+            <element signature="e#968#969#0" expanded="false" />
+            <element signature="e#1704#1705#0" expanded="false" />
+            <element signature="e#1735#1736#0" expanded="false" />
+            <element signature="e#1777#1778#0" expanded="false" />
+            <element signature="e#1830#1831#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1127,20 +1235,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1860#1866#0" expanded="true" />
-            <element signature="e#2373#2391#0" expanded="true" />
-            <element signature="e#2589#2606#0" expanded="true" />
-            <element signature="e#2910#2927#0" expanded="true" />
-            <element signature="e#11683#11689#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Zihan/Seller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="51" column="12" lean-forward="false" selection-start-line="51" selection-start-column="12" selection-end-line="51" selection-end-column="12" />
           <folding />
         </state>
       </provider>
@@ -1153,40 +1247,55 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Zihan/Seller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="21" column="25" lean-forward="false" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Zihan/Bidder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        <state relative-caret-position="1955">
+          <caret line="130" column="56" lean-forward="false" selection-start-line="130" selection-start-column="56" selection-end-line="130" selection-end-column="56" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Zihan/Item.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="74" column="9" lean-forward="false" selection-start-line="74" selection-start-column="9" selection-end-line="74" selection-end-column="9" />
-          <folding />
+        <state relative-caret-position="612">
+          <caret line="47" column="22" lean-forward="false" selection-start-line="47" selection-start-column="22" selection-end-line="47" selection-end-column="22" />
+          <folding>
+            <element signature="e#677#678#0" expanded="false" />
+            <element signature="e#705#706#0" expanded="false" />
+            <element signature="e#732#733#0" expanded="false" />
+            <element signature="e#755#756#0" expanded="false" />
+            <element signature="e#784#785#0" expanded="false" />
+            <element signature="e#814#815#0" expanded="false" />
+            <element signature="e#929#930#0" expanded="false" />
+            <element signature="e#968#969#0" expanded="false" />
+            <element signature="e#1704#1705#0" expanded="false" />
+            <element signature="e#1735#1736#0" expanded="false" />
+            <element signature="e#1777#1778#0" expanded="false" />
+            <element signature="e#1830#1831#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Zihan/AuctionServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="213" column="27" lean-forward="false" selection-start-line="213" selection-start-column="27" selection-end-line="213" selection-end-column="27" />
-          <folding>
-            <element signature="e#1860#1866#0" expanded="true" />
-            <element signature="e#2373#2391#0" expanded="true" />
-            <element signature="e#2589#2606#0" expanded="true" />
-            <element signature="e#2910#2927#0" expanded="true" />
-            <element signature="e#11683#11689#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="289">
+          <caret line="455" column="61" lean-forward="true" selection-start-line="455" selection-start-column="61" selection-end-line="455" selection-end-column="61" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Zihan/Simulation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1054">
-          <caret line="62" column="42" lean-forward="false" selection-start-line="62" selection-start-column="42" selection-end-line="62" selection-end-column="42" />
+        <state relative-caret-position="527">
+          <caret line="79" column="89" lean-forward="false" selection-start-line="79" selection-start-column="89" selection-end-line="79" selection-end-column="89" />
           <folding />
         </state>
       </provider>

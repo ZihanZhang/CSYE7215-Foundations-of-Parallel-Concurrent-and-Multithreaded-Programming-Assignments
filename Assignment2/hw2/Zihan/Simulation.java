@@ -76,10 +76,12 @@ public class Simulation
 //        for (Item i : AuctionServer.getInstance().getItems()) {
 //            System.out.println(i);
 //        }
-//        Thread.sleep(5000);
+//        Thread.sleep(3000);
         System.out.println("**************************************");
         System.out.println("Total Revenue: " + AuctionServer.getInstance().revenue());
         System.out.println("Total Items: " + AuctionServer.getInstance().soldItemsCount());
+
+
         System.out.println("**************************************");
     }
 }

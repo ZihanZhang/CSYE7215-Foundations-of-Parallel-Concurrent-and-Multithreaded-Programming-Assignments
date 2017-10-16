@@ -67,7 +67,11 @@ public class AuctionServer
 
 
 
-	/**
+
+
+
+
+    /**
 	 * Server restriction constants:
 	 */
 	public static final int maxBidCount = 10; // The maximum number of bids at any given time for a buyer.
@@ -144,10 +148,10 @@ public class AuctionServer
 	 *  then you should probably be using that structure's intrinsic lock.
 	 */
 
-	private Object sellerlock = new Object();
+//	private Object sellerlock = new Object();
 	private Object itemlock = new Object();
 	private Object buyerlock = new Object();
-	private Object idlock = new Object();
+//	private Object idlock = new Object();
 	private Object qualock = new Object();
 
 
@@ -228,7 +232,6 @@ public class AuctionServer
         }
 //        System.out.println("itemsnum: " + itemsnum + " quanum: " + quanum);
 		synchronized (itemlock) {
-
             if (itemsUpForBidding.size() < serverCapacity && quanum != Integer.MIN_VALUE && nonbidnum != Integer.MIN_VALUE) {
 //                System.out.print(lowestBiddingPrice + " ");
                 synchronized (qualock) {
@@ -237,6 +240,8 @@ public class AuctionServer
                     }
 
                     if (itemsPerSeller.get(sellerName) >= maxSellerItems) {
+                        System.out.println("Attempt to submit item: " + itemName + " Failed, Reason: Seller sell too many items");
+                        System.out.println();
                         return -1;
                     }
 
@@ -253,6 +258,8 @@ public class AuctionServer
                     if (lowestBiddingPrice < 75) {
                         if (quanum >= 2) {
                             qualifiedSeller.put(sellerName, Integer.MIN_VALUE);
+                            System.out.println("Seller " + sellerName + " is disqualified!!!");
+                            System.out.println();
                             return -1;
                         }
                         else {
@@ -275,9 +282,16 @@ public class AuctionServer
                 itemsAndIDs.put(thisid, newitem);
                 itemsPerSeller.put(sellerName, itemsPerSeller.get(sellerName) + 1);
 
-
+                System.out.println("Attempt to submit item: " + itemName + " Submission Success!");
+                System.out.println();
                 return thisid;
             }
+            else {
+                System.out.println("Attempt to submit item: " + itemName + " Submission failed Reason: server overload or seller has been disqualified");
+                System.out.println();
+                return -1;
+            }
+
 		}
 
 			
@@ -287,9 +301,7 @@ public class AuctionServer
 		//   If the seller is a new one, add them to the list of sellers.
 		//   If the seller has too many items up for bidding, don't let them add this one.
 		//   Don't forget to increment the number of things the seller has currently listed.
-
-		return -1;
-	}
+    }
 
 
 
@@ -310,7 +322,9 @@ public class AuctionServer
         synchronized (itemlock) {
             items = new ArrayList<Item>();
             for (Item it : itemsUpForBidding) {
-                items.add(it);
+                if (it.biddingOpen()) {
+                    items.add(it);
+                }
             }
         }
 
@@ -366,14 +380,42 @@ public class AuctionServer
                 if (itemsPerBuyer.get(bidderName) < maxBidCount) {
                     if (!bidderName.equals(highestBidders.get(listingID))) {
                         if (biddingAmount > itemPrice(listingID)) {
+                            if (highestBidders.containsKey(listingID)) {
+                                String oldBidder = highestBidders.get(listingID);
+                                int oldNum = itemsPerBuyer.get(oldBidder);
+                                itemsPerBuyer.put(oldBidder, oldNum - 1);
+                            }
+
                             highestBidders.put(listingID, bidderName);
                             highestBids.put(listingID, biddingAmount);
                             itemsPerBuyer.put(bidderName, itemsPerBuyer.get(bidderName) + 1);
-//                            System.out.println("Bidding Succeeded");
+
+                            System.out.println("Attempted to bid item: " + listingID + " Bidding Submission Succeeded");
+                            System.out.println();
                             return true;
                         }
+                        else {
+                            System.out.println("Attempted to bid item: " + listingID + " Failed Reason bidding amount lower than price");
+                            System.out.println();
+                            return false;
+                        }
+                    }
+                    else {
+                        System.out.println("Attempted to bid item: " + listingID + " Failed Reason already the highest bidder");
+                        System.out.println();
+                        return false;
                     }
                 }
+                else {
+                    System.out.println("Attempted to bid item: " + listingID + " Failed Reason Buyer bid too many items");
+                    System.out.println();
+                    return false;
+                }
+            }
+            else {
+                System.out.println("Attempted to bid item: " + listingID + " Failed Reason bidding is not open");
+                System.out.println();
+                return false;
             }
 //            System.out.println(itemsUpForBidding.size());
         }
@@ -391,7 +433,6 @@ public class AuctionServer
 		//   Decrement the former winning bidder's count
 		//   Put your bid in place
 //		System.out.println("Bidding Failed");
-		return false;
 	}
 
 	/**
@@ -452,12 +493,16 @@ public class AuctionServer
                     itemsUpForBidding.remove(itemsAndIDs.get(listingID));
                     itemsPerBuyer.put(bidderName, itemsPerBuyer.get(bidderName) - 1);
                     itemsPerSeller.put(bidderName, itemsPerSeller.get(itemsAndIDs.get(listingID).seller()) - 1);
+
+
                     soldItemsCount++;
                     revenue = revenue + itemPrice(listingID);
+
                     return 1;
                 }
             }
             else {
+                itemsPerBuyer.put(bidderName, itemsPerBuyer.get(bidderName) - 1);
                 return 3;
             }
         }

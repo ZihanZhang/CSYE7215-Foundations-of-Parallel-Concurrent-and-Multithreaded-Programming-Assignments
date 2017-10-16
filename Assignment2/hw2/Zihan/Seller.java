@@ -50,7 +50,7 @@ public class Seller implements Client
 	    	int index = this.rand.nextInt(this.items.size());
 	    	String item = this.items.get(index);
 	    	
-	    	int listingID = server.submitItem(this.name(), item, this.rand.nextInt(100), this.rand.nextInt(100) + 100);  
+	    	int listingID = server.submitItem(this.name(), item, this.rand.nextInt(100), this.rand.nextInt(100) + 100);
 //	    	System.out.println(listingID);
 	    	if (listingID != -1)
 	    	{

@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class Cook implements Runnable {
 	private final String name;
-	Simulation simulation;
+//	Simulation simulation;
 
 	/**
 	 * You can feel free modify this constructor.  It must
@@ -19,9 +19,9 @@ public class Cook implements Runnable {
 	 *
 	 * @param: the name of the cook
 	 */
-	public Cook(String name, Simulation simulation) {
+	public Cook(String name) {
 		this.name = name;
-		this.simulation = simulation;
+//		this.simulation = simulation;
 	}
 
 	public String toString() {
@@ -48,7 +48,13 @@ public class Cook implements Runnable {
 				//YOUR CODE GOES HERE...
 				Customer curCustomer = simulation.getOrder();
 				List<Food> curFood= curCustomer.getOrder();
-
+                for (Food food: curFood) {
+                    switch (food.name) {
+                        case "burger": Simulation.Grill.makeFood();
+                        case "fries": Simulation.Fryer.makeFood();
+                        case "coffee": Simulation.CoffeeMaker2000.makeFood();
+                    }
+                }
 			}
 		}
 		catch(InterruptedException e) {

@@ -14,9 +14,13 @@ public class Simulation {
 	// List to track simulation events during simulation
 	public static List<SimulationEvent> events;  
 	private LinkedList<Food> orders;
-	private ArrayList<Machine> machines;
-	private ArrayList<Cook> cooks;
-	private LinkedList<Customer> customers;
+//	private ArrayList<Machine> machines;
+	static private ArrayList<Cook> cooks;
+	static private LinkedList<Customer> customers;
+
+    static Machine Grill;
+    static Machine Fryer;
+    static Machine CoffeeMaker2000;
 
 	private int numTables;
 	private int availableTables;
@@ -29,7 +33,7 @@ public class Simulation {
 		numTables = num;
 	}
 
-	public boolean tableFull() {
+	static public boolean tableFull() {
 		if (availableTables <= 0) {
 			return true;
 		}
@@ -45,7 +49,7 @@ public class Simulation {
 		this.orders = orders;
 	}
 
-	public void submitOrders(Customer customer) {
+	static public void submitOrders(Customer customer) {
 		customers.add(customer);
 	}
 
@@ -108,11 +112,16 @@ public class Simulation {
 
 
 		// Start up machines
-
+        Grill = new Machine("Grill", FoodType.burger, machineCapacity);
+        Fryer = new Machine("Fryer", FoodType.fries, machineCapacity);
+        CoffeeMaker2000 = new Machine("CoffeeMaker2000", FoodType.coffee, machineCapacity);
 
 
 		// Let cooks in
-
+        cooks = new ArrayList<>();
+        for (int i = 0; i < numCooks; i++) {
+            cooks.add(new Cook("Cook:" + i));
+        }
 
 		// Build the customers.
 		Thread[] customers = new Thread[numCustomers];

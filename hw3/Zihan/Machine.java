@@ -14,7 +14,7 @@ public class Machine {
 	public final int capacityIn;
 
 	//YOUR CODE GOES HERE...
-
+    public int curNum;
 
 
 
@@ -48,7 +48,15 @@ public class Machine {
 	 */
 	public Object makeFood() throws InterruptedException {
 		//YOUR CODE GOES HERE...
+        while (curNum >= capacityIn) {
+            wait();
+        }
 
+        Thread makeFoodThread = new Thread(cookAnItem);
+        makeFoodThread.start();
+        makeFoodThread.join();
+        curNum++;
+        return
 	}
 
 	//THIS MIGHT BE A USEFUL METHOD TO HAVE AND USE BUT IS JUST ONE IDEA
@@ -56,6 +64,12 @@ public class Machine {
 		public void run() {
 			try {
 				//YOUR CODE GOES HERE...
+                switch (machineFoodType.name) {
+                    case "burger": Thread.sleep(600);
+                    case "fries": Thread.sleep(450);
+                    case "coffee": Thread.sleep(150);
+                }
+
 			} catch(InterruptedException e) { }
 		}
 	}

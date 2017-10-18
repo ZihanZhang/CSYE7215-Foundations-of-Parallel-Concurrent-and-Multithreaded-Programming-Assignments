@@ -14,7 +14,7 @@ public class Customer implements Runnable {
 	private final String name;
 	private final List<Food> order;
 	private final int orderNum;
-	Simulation simulation;
+//	Simulation simulation;
 	private boolean orderReady = false;
 	
 	private static int runningCounter = 0;
@@ -25,7 +25,7 @@ public class Customer implements Runnable {
 	 * would find adding them useful.
 	 */
 	public Customer(String name, List<Food> order, Simulation simulation) {
-		this.simulation = simulation;
+//		this.simulation = simulation;
 		this.name = name;
 		this.order = order;
 		this.orderNum = ++runningCounter;
@@ -51,7 +51,7 @@ public class Customer implements Runnable {
 	 */
 	public void run() {
 		//YOUR CODE GOES HERE...
-		while (simulation.tableFull()) {
+		while (Simulation.tableFull()) {
 			try {
 				wait();
 			} catch (InterruptedException e) {
@@ -59,7 +59,7 @@ public class Customer implements Runnable {
 			}
 		}
 
-		simulation.submitOrders(this);
+		Simulation.submitOrders(this);
 
 		while(true) {
 			if (orderReady) {

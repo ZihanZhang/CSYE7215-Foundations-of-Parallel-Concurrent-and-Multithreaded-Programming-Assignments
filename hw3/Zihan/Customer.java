@@ -31,6 +31,10 @@ public class Customer implements Runnable {
 		this.orderNum = ++runningCounter;
 	}
 
+	public List<Food> getOrder() {
+		return order;
+	}
+
 	public void setOrderReady(boolean orderReady) {
 		this.orderReady = orderReady;
 	}

@@ -1,6 +1,8 @@
 package Zihan;
 
 
+import java.util.List;
+
 /**
  * Cooks are simulation actors that have at least one field, a name.
  * When running, a cook attempts to retrieve outstanding orders placed
@@ -45,7 +47,8 @@ public class Cook implements Runnable {
 			while(true) {
 				//YOUR CODE GOES HERE...
 				Customer curCustomer = simulation.getOrder();
-				curCustomer
+				List<Food> curFood= curCustomer.getOrder();
+
 			}
 		}
 		catch(InterruptedException e) {

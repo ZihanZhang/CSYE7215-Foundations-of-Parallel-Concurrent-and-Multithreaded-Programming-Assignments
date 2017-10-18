@@ -16,6 +16,8 @@ public class Machine {
 	//YOUR CODE GOES HERE...
 
 
+
+
 	/**
 	 * The constructor takes at least the name of the machine,
 	 * the Food item it makes, and its capacity.  You may extend
@@ -46,6 +48,7 @@ public class Machine {
 	 */
 	public Object makeFood() throws InterruptedException {
 		//YOUR CODE GOES HERE...
+
 	}
 
 	//THIS MIGHT BE A USEFUL METHOD TO HAVE AND USE BUT IS JUST ONE IDEA

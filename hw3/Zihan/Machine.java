@@ -46,17 +46,16 @@ public class Machine {
 	 * the call can proceed.  You will need to implement some means to
 	 * notify the calling Cook when the food item is finished.
 	 */
-	public Object makeFood() throws InterruptedException {
+	public Thread makeFood() throws InterruptedException {
 		//YOUR CODE GOES HERE...
         while (curNum >= capacityIn) {
             wait();
         }
-
-        Thread makeFoodThread = new Thread(cookAnItem);
+        azcurNum++;
+        Thread makeFoodThread = new Thread(new CookAnItem());
         makeFoodThread.start();
-        makeFoodThread.join();
-        curNum++;
-        return
+//        makeFoodThread.join();
+        return makeFoodThread;
 	}
 
 	//THIS MIGHT BE A USEFUL METHOD TO HAVE AND USE BUT IS JUST ONE IDEA

@@ -46,15 +46,22 @@ public class Cook implements Runnable {
 		try {
 			while(true) {
 				//YOUR CODE GOES HERE...
-				Customer curCustomer = simulation.getOrder();
+				Customer curCustomer = Simulation.getOrder();
 				List<Food> curFood= curCustomer.getOrder();
                 for (Food food: curFood) {
                     switch (food.name) {
-                        case "burger": Simulation.Grill.makeFood();
-                        case "fries": Simulation.Fryer.makeFood();
-                        case "coffee": Simulation.CoffeeMaker2000.makeFood();
+                        case "burger":
+                            Simulation.Grill.makeFood().join();
+                            Simulation.Grill.curNum--;
+                        case "fries":
+                            Simulation.Fryer.makeFood().join();
+                            Simulation.Fryer.curNum--;
+                        case "coffee":
+                            Simulation.CoffeeMaker2000.makeFood().join();
+                            Simulation.CoffeeMaker2000.curNum--;
                     }
                 }
+                curCustomer.setOrderReady();
 			}
 		}
 		catch(InterruptedException e) {

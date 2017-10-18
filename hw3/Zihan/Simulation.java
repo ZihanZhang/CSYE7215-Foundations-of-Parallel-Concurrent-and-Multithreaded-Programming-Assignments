@@ -13,9 +13,9 @@ import java.util.Random;
 public class Simulation {
 	// List to track simulation events during simulation
 	public static List<SimulationEvent> events;  
-	private LinkedList<Food> orders;
+	static private LinkedList<Food> orders;
 //	private ArrayList<Machine> machines;
-	static private ArrayList<Cook> cooks;
+	static private Thread[] cooks;
 	static private LinkedList<Customer> customers;
 
     static Machine Grill;
@@ -23,7 +23,7 @@ public class Simulation {
     static Machine CoffeeMaker2000;
 
 	private int numTables;
-	private int availableTables;
+	static private int availableTables;
 
 	public int getAvailableTablesNumTables() {
 		return numTables;
@@ -40,7 +40,7 @@ public class Simulation {
 		return false;
 	}
 
-	public LinkedList<Food> getOrders() {
+	static public LinkedList<Food> getOrders() {
 		return orders;
 	}
 
@@ -53,7 +53,7 @@ public class Simulation {
 		customers.add(customer);
 	}
 
-	public Customer getOrder() {
+	static public Customer getOrder() {
 		return customers.poll();
 	}
 
@@ -118,9 +118,12 @@ public class Simulation {
 
 
 		// Let cooks in
-        cooks = new ArrayList<>();
         for (int i = 0; i < numCooks; i++) {
-            cooks.add(new Cook("Cook:" + i));
+            cooks = new Thread[numCooks];
+            Cook cook = new Cook("Cook:" + i);
+            Thread cookThread = new Thread(cook);
+            cooks[i] = cookThread;
+
         }
 
 		// Build the customers.

@@ -24,7 +24,7 @@ public class Customer implements Runnable {
 	 * least the name and order but may take other parameters if you
 	 * would find adding them useful.
 	 */
-	public Customer(String name, List<Food> order, Simulation simulation) {
+	public Customer(String name, List<Food> order) {
 //		this.simulation = simulation;
 		this.name = name;
 		this.order = order;
@@ -35,8 +35,8 @@ public class Customer implements Runnable {
 		return order;
 	}
 
-	public void setOrderReady(boolean orderReady) {
-		this.orderReady = orderReady;
+	public void setOrderReady() {
+		this.orderReady = true;
 	}
 
 	public String toString() {

@@ -3,6 +3,10 @@ package Zihan;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+
+//********************************************************
+//Take care of all resources and do the synchronization
+//********************************************************
 public class Store {
     public static Object tablelock = new Object();
     private Object customerlock = new Object();

@@ -21,7 +21,9 @@ public class Customer implements Runnable {
 
 	private volatile boolean over = false;
 
-	Object foodlock = new Object();
+    Object waitinglock = new Object();
+
+    Object foodlock = new Object();
 //    static Object foodlock = new Object();
 
 	Store store;
@@ -80,9 +82,17 @@ public class Customer implements Runnable {
 		store.submitOrders(this);
         Simulation.logEvent(SimulationEvent.customerPlacedOrder(this, order, orderNum));
 
-		while(!over) {
+//		while(!over) {
+//
+//		}
+        synchronized (waitinglock) {
+            try {
+                waitinglock.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 
-		}
         Simulation.logEvent(SimulationEvent.customerReceivedOrder(this, order, orderNum));
 
 		synchronized (Store.tablelock) {

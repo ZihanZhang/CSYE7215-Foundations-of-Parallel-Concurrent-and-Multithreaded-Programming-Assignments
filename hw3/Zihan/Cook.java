@@ -8,9 +8,14 @@ import java.util.List;
  * When running, a cook attempts to retrieve outstanding orders placed
  * by Eaters and process them.
  */
+
+//*************************************************************************
+//Synchronization is done through instance confine approach by Store.java
+//*************************************************************************
 public class Cook implements Runnable {
     private final String name;
     Store store;
+    static int index = 0;
 //	Simulation simulation;
 
     /**
@@ -51,7 +56,17 @@ public class Cook implements Runnable {
                 if (!store.customerReady()) {
                     continue;
                 }
-                Customer curCustomer = store.getOrder();
+                Customer curCustomer = null;
+                if (index < store.customers.size()) {
+                    curCustomer = store.customers.get(index);
+                    index++;
+                    index++;
+                }
+
+                if (curCustomer == null) {
+                    break;
+                }
+
                 List<Food> curFood= curCustomer.getOrder();
                 Simulation.logEvent(SimulationEvent.cookReceivedOrder(this, curFood, curCustomer.getOrderNum()));
                 for (Food food: curFood) {
@@ -73,7 +88,9 @@ public class Cook implements Runnable {
                 }
                 Simulation.logEvent(SimulationEvent.cookCompletedOrder(this, curCustomer.getOrderNum()));
 //                store.removeCustomer(curCustomer);
-                curCustomer.exit();
+                synchronized (curCustomer.waitinglock) {
+                    curCustomer.waitinglock.notify();
+                }
             }
         }
         catch(InterruptedException e) {

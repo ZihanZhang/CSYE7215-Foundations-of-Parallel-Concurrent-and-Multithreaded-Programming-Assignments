@@ -11,8 +11,8 @@ import java.util.Random;
  * add any fields (static or instance) or any methods you wish.
  */
 public class Simulation {
-    Object tablelock = new Object();
-    Object orderlock = new Object();
+//    Object tablelock = new Object();
+//    Object orderlock = new Object();
 
 
 	// List to track simulation events during simulation
@@ -211,14 +211,20 @@ public class Simulation {
 		}
 
 		// Shut down machines
-        store.Grill = null;
-		store.Fryer = null;
-		store.CoffeeMaker2000 = null;
+        for (Thread t: Store.machineThreads) {
+            try {
+                t.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        logEvent(SimulationEvent.machineEnding(store.Grill));
+        logEvent(SimulationEvent.machineEnding(store.Fryer));
+        logEvent(SimulationEvent.machineEnding(store.CoffeeMaker2000));
 
 
 
-
-		// Done with simulation		
+        // Done with simulation
 		logEvent(SimulationEvent.endSimulation());
 
 		return events;

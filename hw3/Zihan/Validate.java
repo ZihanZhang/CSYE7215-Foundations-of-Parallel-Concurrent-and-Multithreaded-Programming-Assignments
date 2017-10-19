@@ -48,6 +48,8 @@ public class Validate {
 				Cook should not work on order before it is placed
 			 */
 
+//			check(events.get());
+
 			return true;
 		} catch (InvalidSimulationException e) {
 			return false;

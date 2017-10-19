@@ -1,9 +1,14 @@
 package Zihan;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Store {
     public static Object tablelock = new Object();
+    private Object customerlock = new Object();
+//    public static Object foodlock = new Object();
+
+    public static ArrayList<Thread> machineThreads = new ArrayList<>();
 
     Thread[] cooks;
     LinkedList<Customer> customers;
@@ -21,11 +26,15 @@ public class Store {
     }
 
     public void takeSeat() {
-        numTables--;
+        synchronized (Store.tablelock) {
+            numTables--;
+        }
     }
 
     public void leaveSeat() {
-        numTables++;
+        synchronized (Store.tablelock) {
+            numTables++;
+        }
     }
 
 
@@ -44,11 +53,30 @@ public class Store {
 		return false;
 	}
 
+	public boolean customerReady() {
+        synchronized (customerlock) {
+            if (customers.size() <= 0) {
+                return false;
+            }
+            return true;
+        }
+    }
+
     public void submitOrders(Customer customer) {
-        customers.add(customer);
+        synchronized (customerlock) {
+            customers.add(customer);
+        }
     }
 
     public Customer getOrder() {
-        return customers.poll();
+        synchronized (customerlock) {
+            return customers.poll();
+        }
+    }
+
+    public void removeCustomer(Customer customer) {
+        synchronized (customerlock) {
+            customers.remove(customer);
+        }
     }
 }

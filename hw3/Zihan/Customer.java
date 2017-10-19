@@ -21,6 +21,9 @@ public class Customer implements Runnable {
 
 	private volatile boolean over = false;
 
+	Object foodlock = new Object();
+//    static Object foodlock = new Object();
+
 	Store store;
 
 	/**
@@ -37,7 +40,9 @@ public class Customer implements Runnable {
 	}
 
 	public List<Food> getOrder() {
-		return order;
+	    synchronized (foodlock) {
+            return order;
+        }
 	}
 
 	public void setOrderReady() {
@@ -56,39 +61,46 @@ public class Customer implements Runnable {
 	 */
 	public void run() {
 		//YOUR CODE GOES HERE...
-        System.out.println("Customer start");
-        System.out.println(store.numTables);
-		while (store.tableFull()) {
-		    System.out.println("Table's full");
-			try {
-			    synchronized (Store.tablelock) {
+        Simulation.logEvent(SimulationEvent.customerStarting(this));
+        synchronized (Store.tablelock) {
+            while (store.tableFull()) {
+                try {
                     Store.tablelock.wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
+            }
+        }
+
+        Simulation.logEvent(SimulationEvent.customerEnteredCoffeeShop(this));
 		synchronized (Store.tablelock) {
             store.takeSeat();
             store.customers.add(this);
         }
-		System.out.println("Take seat");
-        System.out.println("ready to submit");
 		store.submitOrders(this);
+        Simulation.logEvent(SimulationEvent.customerPlacedOrder(this, order, orderNum));
 
 		while(!over) {
 
 		}
+        Simulation.logEvent(SimulationEvent.customerReceivedOrder(this, order, orderNum));
 
 		synchronized (Store.tablelock) {
             store.leaveSeat();
-            store.customers.remove(this);
+//            store.removeCustomer(this);
+//            System.out.println("ready to notify");
             Store.tablelock.notifyAll();
+            Simulation.logEvent(SimulationEvent.customerLeavingCoffeeShop(this));
         }
-		System.out.println(store.numTables);
+    }
+
+    public int getOrderNum() {
+	    return orderNum;
     }
 
 	public void exit() {
-	    this.over = true;
+	    synchronized (this) {
+            this.over = true;
+        }
     }
 }

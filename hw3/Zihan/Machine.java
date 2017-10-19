@@ -9,12 +9,14 @@ package Zihan;
  * produce.
  */
 public class Machine {
+    Object machinelock = new Object();
+
 	public final String machineName;
 	public final Food machineFoodType;
 	public final int capacityIn;
 
 	//YOUR CODE GOES HERE...
-    public int curNum;
+    private int curNum;
 
 
 
@@ -31,8 +33,8 @@ public class Machine {
 		this.machineFoodType = foodIn;
 		this.capacityIn = capacityIn;
 		//YOUR CODE GOES HERE...
-
-	}
+        Simulation.logEvent(SimulationEvent.machineStarting(this, foodIn, capacityIn));
+    }
 	
 
 	
@@ -49,11 +51,14 @@ public class Machine {
 	public Thread makeFood() throws InterruptedException {
 		//YOUR CODE GOES HERE...
         while (curNum >= capacityIn) {
-            wait();
+            synchronized (machinelock) {
+                machinelock.wait();
+            }
         }
-        curNum++;
         Thread makeFoodThread = new Thread(new CookAnItem());
+        Store.machineThreads.add(makeFoodThread);
         makeFoodThread.start();
+        Simulation.logEvent(SimulationEvent.machineCookingFood(this, machineFoodType));
 //        makeFoodThread.join();
         return makeFoodThread;
 	}
@@ -68,10 +73,28 @@ public class Machine {
 //                    case "fries": Thread.sleep(450);
 //                    case "coffee": Thread.sleep(150);
 //                }
-                Thread.sleep(machineFoodType.cookTimeMS);
+                synchronized (machinelock) {
+                    takeMachine();
+                    Thread.sleep(machineFoodType.cookTimeMS);
+                    Simulation.logEvent(SimulationEvent.machineDoneFood(Machine.this, machineFoodType));
+                    machinelock.notifyAll();
+                    leaveMachine();
+                }
 			} catch(InterruptedException e) { }
 		}
 	}
+
+	public void takeMachine() {
+	    synchronized (machinelock) {
+            curNum--;
+        }
+    }
+
+    public void leaveMachine() {
+	    synchronized (machinelock) {
+            curNum++;
+        }
+    }
  
 
 	public String toString() {

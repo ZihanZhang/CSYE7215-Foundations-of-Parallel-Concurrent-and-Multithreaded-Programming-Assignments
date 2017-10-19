@@ -11,51 +11,54 @@ import java.util.Random;
  * add any fields (static or instance) or any methods you wish.
  */
 public class Simulation {
+    Object tablelock = new Object();
+    Object orderlock = new Object();
+
+
 	// List to track simulation events during simulation
 	public static List<SimulationEvent> events;  
-	static private LinkedList<Food> orders;
+//	static private LinkedList<Food> orders;
 //	private ArrayList<Machine> machines;
-	static private Thread[] cooks;
-	static private LinkedList<Customer> customers;
+//	static private Thread[] cooks;
+//	static private LinkedList<Customer> customers = new LinkedList<>();
 
-    static Machine Grill;
-    static Machine Fryer;
-    static Machine CoffeeMaker2000;
+//    static Machine Grill;
+//    static Machine Fryer;
+//    static Machine CoffeeMaker2000;
 
-	private int numTables;
-	static private int availableTables;
+//	private int numTables;
 
-	public int getAvailableTablesNumTables() {
-		return numTables;
-	}
+//	public int getAvailableTablesNumTables() {
+//		return numTables;
+//	}
+//
+//	public void setAvailableTablesNumTables(int num) {
+//		numTables = num;
+//	}
 
-	public void setAvailableTablesNumTables(int num) {
-		numTables = num;
-	}
+//	public boolean tableFull() {
+//		if ( numTables <= 0) {
+//			return true;
+//		}
+//		return false;
+//	}
 
-	static public boolean tableFull() {
-		if (availableTables <= 0) {
-			return true;
-		}
-		return false;
-	}
-
-	static public LinkedList<Food> getOrders() {
-		return orders;
-	}
+//	static public LinkedList<Food> getOrders() {
+//		return orders;
+//	}
 
 	//could append or copy
-	public void setOrders(LinkedList<Food> orders) {
-		this.orders = orders;
-	}
+//	public void setOrders(LinkedList<Food> orders) {
+//		this.orders = orders;
+//	}
 
-	static public void submitOrders(Customer customer) {
-		customers.add(customer);
-	}
+//	static public void submitOrders(Customer customer) {
+//		customers.add(customer);
+//	}
 
-	static public Customer getOrder() {
-		return customers.poll();
-	}
+//	static public Customer getOrder() {
+//		return customers.poll();
+//	}
 
 
 	/**
@@ -89,8 +92,13 @@ public class Simulation {
 			boolean randomOrders
 			) {
 
-		//This method's signature MUST NOT CHANGE.  
+		//This method's signature MUST NOT CHANGE.
 
+//        Simulation.numTables = numTables;
+        Store store = new Store(numCustomers, numCooks,
+        numTables,
+        machineCapacity,
+        randomOrders);
 
 		//We are providing this events list object for you.  
 		//  It is the ONLY PLACE where a concurrent collection object is 
@@ -112,18 +120,18 @@ public class Simulation {
 
 
 		// Start up machines
-        Grill = new Machine("Grill", FoodType.burger, machineCapacity);
-        Fryer = new Machine("Fryer", FoodType.fries, machineCapacity);
-        CoffeeMaker2000 = new Machine("CoffeeMaker2000", FoodType.coffee, machineCapacity);
+        store.Grill = new Machine("Grill", FoodType.burger, machineCapacity);
+        store.Fryer = new Machine("Fryer", FoodType.fries, machineCapacity);
+        store.CoffeeMaker2000 = new Machine("CoffeeMaker2000", FoodType.coffee, machineCapacity);
 
 
 		// Let cooks in
         for (int i = 0; i < numCooks; i++) {
-            cooks = new Thread[numCooks];
-            Cook cook = new Cook("Cook:" + i);
+            store.cooks = new Thread[numCooks];
+            Cook cook = new Cook("Cook:" + i, store);
             Thread cookThread = new Thread(cook);
-            cooks[i] = cookThread;
-
+            cookThread.start();
+            store.cooks[i] = cookThread;
         }
 
 		// Build the customers.
@@ -137,7 +145,7 @@ public class Simulation {
 			order.add(FoodType.coffee);
 			for(int i = 0; i < customers.length; i++) {
 				customers[i] = new Thread(
-						new Customer("Customer " + (i+1), order)
+						new Customer("Customer " + (i+1), order, store)
 						);
 			}
 		}
@@ -158,7 +166,7 @@ public class Simulation {
 					order.add(FoodType.coffee);
 				}
 				customers[i] = new Thread(
-						new Customer("Customer " + (i+1), order)
+						new Customer("Customer " + (i+1), order, store)
 						);
 			}
 		}
@@ -179,6 +187,9 @@ public class Simulation {
 		try {
 			// Wait for customers to finish
 			//   -- you need to add some code here...
+            for (int i = 0; i < customers.length; i++) {
+                customers[i].join();
+            }
 			
 			
 			
@@ -189,10 +200,10 @@ public class Simulation {
 			// The easiest way to do this might be the following, where
 			// we interrupt their threads.  There are other approaches
 			// though, so you can change this if you want to.
-			for(int i = 0; i < cooks.length; i++)
-				cooks[i].interrupt();
-			for(int i = 0; i < cooks.length; i++)
-				cooks[i].join();
+			for(int i = 0; i < store.cooks.length; i++)
+				store.cooks[i].interrupt();
+			for(int i = 0; i < store.cooks.length; i++)
+				store.cooks[i].join();
 
 		}
 		catch(InterruptedException e) {
@@ -200,7 +211,9 @@ public class Simulation {
 		}
 
 		// Shut down machines
-
+        store.Grill = null;
+		store.Fryer = null;
+		store.CoffeeMaker2000 = null;
 
 
 

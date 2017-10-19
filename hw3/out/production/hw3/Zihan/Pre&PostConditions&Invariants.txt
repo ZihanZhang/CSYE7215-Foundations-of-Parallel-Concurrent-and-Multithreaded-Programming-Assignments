@@ -1,0 +1,123 @@
+simulation.java
+LinkedList<Food> orders
+ArrayList<Machine> machines
+ArrayList<Cook> cooks
+Invariants: custmers's number should not exceed tables's number. 
+
+Precondition: None
+Postcondition: run the shop
+Exception: None
+public static List<SimulationEvent> runSimulation
+
+Precondition: None
+Postcondition: return current orders
+Exception: None
+public LinkedList<Food> getOrder(LinkedList<Food> orders)
+
+Precondition: None
+Postcondition: set simulation's orders
+Exception: None
+public void setOrder(LinkedList<Food> ordes)
+**************************************************************************************************
+cook.java:
+LinkedList<Food> orders
+Simulation simulation
+Invariants: Cook should always take the customer who is first in the waiting queue
+
+Precondition: None
+Postcondition: return a Cook named name
+Exception: None
+public Cook(String name)
+
+Precondition: None
+Postcondition: return Cook's name
+Exception: None
+public String toString()
+
+Precondition: None
+Postcondition: run cook
+Exception: None
+public void run()
+
+Precondition: orders contains nothing
+Postcondition: return current orders
+Exception: LinkedList Null Element Exception
+public LinkedList<Food> getOrder(LinkedList<Food> orders)
+
+Precondition: None
+Postcondition: set simulation's orders
+Exception: None
+public void setOrder(LinkedList<Food> orders)
+
+***************************************************************************************************
+customer.java:
+int numTablesAvailable
+LinkedList<Food> order
+Simulation simulation
+Invariants: customer should add the order to the end of the queue
+
+Precondition: order cannot be empty
+Postcondition: return a Customer named name and his order being order
+Exception: List empty Exception
+public Customer(String name, List<Food> order)
+
+Precondition: None
+Postcondition: return Customer's name
+Exception: None
+public String toString()
+
+Precondition: None
+Postcondition: 
+Exception: None
+public void run()
+
+Precondition: numTablesAvailable >= 0
+Postcondition: return current number of tables available
+Exception: No table Exception
+public int getTableAvailable(int numTablesAvailable)
+
+Precondition: None
+Postcondition: set tableavailable
+Exception: None
+public void setTableAvailable(int numTablesAvailable)
+
+Precondition: order cannot be empty
+Postcondition: submit order to shop
+Exception: List empty Exception
+public void submitOrder(LinkedList<Food> order)
+
+****************************************************************************************************
+Food.java
+
+Precondition: None
+Postcondition: return a Food named name and has to take cookTimeMS to be cooked
+Exception: None
+public Food(String name, int cookTimeMS)
+
+Precondition: None
+Postcondition: return Foodr's name
+Exception: None
+public String toString()
+****************************************************************************************************
+FoodType.java
+****************************************************************************************************
+Machine.java
+Simulation simulation
+Invariants: the number of food cooked has to be less than capacity
+
+Precondition: None
+Postcondition: initialize a food machine
+Exception: None
+public Machine(String nameIn, Food foodIn, int capacityIn)
+
+Precondition: None
+Postcondition: return true if the food from the cook is done, false instead
+Exception: None
+public boolean makeFood() throws InterruptedException
+
+Precondition: None
+Postcondition: return Machine's name
+Exception: None
+public String toString()
+
+****************************************************************************************************

@@ -10,6 +10,7 @@ import java.util.List;
  */
 public class Cook implements Runnable {
 	private final String name;
+	Store store;
 //	Simulation simulation;
 
 	/**
@@ -19,7 +20,8 @@ public class Cook implements Runnable {
 	 *
 	 * @param: the name of the cook
 	 */
-	public Cook(String name) {
+	public Cook(String name, Store store) {
+	    this.store = store;
 		this.name = name;
 //		this.simulation = simulation;
 	}
@@ -46,22 +48,30 @@ public class Cook implements Runnable {
 		try {
 			while(true) {
 				//YOUR CODE GOES HERE...
-				Customer curCustomer = Simulation.getOrder();
+                if (store.customers.size() <= 0) {
+                    continue;
+                }
+                System.out.println("got order");
+				Customer curCustomer = store.getOrder();
 				List<Food> curFood= curCustomer.getOrder();
                 for (Food food: curFood) {
                     switch (food.name) {
                         case "burger":
-                            Simulation.Grill.makeFood().join();
-                            Simulation.Grill.curNum--;
+                            System.out.println("burger in process");
+                            store.Grill.makeFood().join();
+                            store.Grill.curNum--;
                         case "fries":
-                            Simulation.Fryer.makeFood().join();
-                            Simulation.Fryer.curNum--;
+                            System.out.println("fries in process");
+                            store.Fryer.makeFood().join();
+                            store.Fryer.curNum--;
                         case "coffee":
-                            Simulation.CoffeeMaker2000.makeFood().join();
-                            Simulation.CoffeeMaker2000.curNum--;
+                            System.out.println("coffee in process");
+                            store.CoffeeMaker2000.makeFood().join();
+                            store.CoffeeMaker2000.curNum--;
                     }
                 }
-                curCustomer.setOrderReady();
+                System.out.println("order ready");
+                curCustomer.exit();
 			}
 		}
 		catch(InterruptedException e) {

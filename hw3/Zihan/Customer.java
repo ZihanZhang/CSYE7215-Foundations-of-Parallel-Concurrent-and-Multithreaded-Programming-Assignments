@@ -19,16 +19,21 @@ public class Customer implements Runnable {
 	
 	private static int runningCounter = 0;
 
+	private volatile boolean over = false;
+
+	Store store;
+
 	/**
 	 * You can feel free modify this constructor.  It must take at
 	 * least the name and order but may take other parameters if you
 	 * would find adding them useful.
 	 */
-	public Customer(String name, List<Food> order) {
+	public Customer(String name, List<Food> order, Store store) {
 //		this.simulation = simulation;
 		this.name = name;
 		this.order = order;
 		this.orderNum = ++runningCounter;
+		this.store = store;
 	}
 
 	public List<Food> getOrder() {
@@ -51,20 +56,39 @@ public class Customer implements Runnable {
 	 */
 	public void run() {
 		//YOUR CODE GOES HERE...
-		while (Simulation.tableFull()) {
+        System.out.println("Customer start");
+        System.out.println(store.numTables);
+		while (store.tableFull()) {
+		    System.out.println("Table's full");
 			try {
-				wait();
+			    synchronized (Store.tablelock) {
+                    Store.tablelock.wait();
+                }
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
+		synchronized (Store.tablelock) {
+            store.takeSeat();
+            store.customers.add(this);
+        }
+		System.out.println("Take seat");
+        System.out.println("ready to submit");
+		store.submitOrders(this);
 
-		Simulation.submitOrders(this);
+		while(!over) {
 
-		while(true) {
-			if (orderReady) {
-				break;
-			}
 		}
-	}
+
+		synchronized (Store.tablelock) {
+            store.leaveSeat();
+            store.customers.remove(this);
+            Store.tablelock.notifyAll();
+        }
+		System.out.println(store.numTables);
+    }
+
+	public void exit() {
+	    this.over = true;
+    }
 }

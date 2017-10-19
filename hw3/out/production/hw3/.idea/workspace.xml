@@ -18,12 +18,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Simulation.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Simulation.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Zihan/Simulation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-493">
-              <caret line="133" column="19" lean-forward="false" selection-start-line="133" selection-start-column="18" selection-end-line="133" selection-end-column="19" />
-              <folding />
+            <state relative-caret-position="3168">
+              <caret line="136" column="31" lean-forward="false" selection-start-line="136" selection-start-column="31" selection-end-line="136" selection-end-column="31" />
+              <folding>
+                <element signature="method#main#0;class#Simulation#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -31,25 +33,64 @@
       <file leaf-file-name="Store.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Zihan/Store.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="5" column="11" lean-forward="false" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+            <state relative-caret-position="600">
+              <caret line="25" column="20" lean-forward="false" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
               <folding>
-                <element signature="e#595#596#0" expanded="true" />
-                <element signature="e#622#623#0" expanded="true" />
+                <element signature="e#485#486#0" expanded="true" />
+                <element signature="e#512#513#0" expanded="true" />
+                <element signature="e#543#544#0" expanded="true" />
+                <element signature="e#570#571#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Customer.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Validate.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Zihan/Validate.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="960">
+              <caret line="40" column="47" lean-forward="false" selection-start-line="40" selection-start-column="47" selection-end-line="40" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SimulationEvent.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Zihan/SimulationEvent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1008">
+              <caret line="82" column="5" lean-forward="false" selection-start-line="82" selection-start-column="5" selection-end-line="82" selection-end-column="5" />
+              <folding>
+                <element signature="class#EventType#0;class#SimulationEvent#0" expanded="false" />
+                <element signature="method#SimulationEvent#0;class#SimulationEvent#0" expanded="false" />
+                <element signature="method#startSimulation#0;class#SimulationEvent#0" expanded="false" />
+                <element signature="method#customerStarting#0;class#SimulationEvent#0" expanded="false" />
+                <element signature="method#customerEnteredCoffeeShop#0;class#SimulationEvent#0" expanded="false" />
+                <element signature="method#customerPlacedOrder#0;class#SimulationEvent#0" expanded="false" />
+                <element signature="method#customerReceivedOrder#0;class#SimulationEvent#0" expanded="false" />
+                <element signature="method#customerLeavingCoffeeShop#0;class#SimulationEvent#0" expanded="false" />
+                <element signature="method#cookStarting#0;class#SimulationEvent#0" expanded="false" />
+                <element signature="method#cookReceivedOrder#0;class#SimulationEvent#0" expanded="false" />
+                <element signature="method#cookStartedFood#0;class#SimulationEvent#0" expanded="false" />
+                <element signature="method#cookFinishedFood#0;class#SimulationEvent#0" expanded="false" />
+                <element signature="method#cookCompletedOrder#0;class#SimulationEvent#0" expanded="false" />
+                <element signature="method#cookEnding#0;class#SimulationEvent#0" expanded="false" />
+                <element signature="method#machineStarting#0;class#SimulationEvent#0" expanded="false" />
+                <element signature="method#machineCookingFood#0;class#SimulationEvent#0" expanded="false" />
+                <element signature="method#machineDoneFood#0;class#SimulationEvent#0" expanded="false" />
+                <element signature="method#machineEnding#0;class#SimulationEvent#0" expanded="false" />
+                <element signature="method#toString#0;class#SimulationEvent#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Customer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Zihan/Customer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-62">
-              <caret line="64" column="43" lean-forward="true" selection-start-line="64" selection-start-column="43" selection-end-line="64" selection-end-column="43" />
-              <folding>
-                <element signature="e#2382#2383#0" expanded="true" />
-                <element signature="e#2411#2412#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-545">
+              <caret line="14" column="35" lean-forward="false" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -57,8 +98,8 @@
       <file leaf-file-name="Cook.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Zihan/Cook.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="19" column="6" lean-forward="true" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
+            <state relative-caret-position="1416">
+              <caret line="61" column="49" lean-forward="false" selection-start-line="61" selection-start-column="49" selection-end-line="61" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -67,7 +108,7 @@
       <file leaf-file-name="Machine.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Zihan/Machine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
+            <state relative-caret-position="1320">
               <caret line="55" column="31" lean-forward="false" selection-start-line="55" selection-start-column="31" selection-end-line="55" selection-end-column="31" />
               <folding />
             </state>
@@ -87,10 +128,6 @@
     <findStrings>
       <find>foodty</find>
       <find>simulationended</find>
-      <find>reporting</find>
-      <find>cook</find>
-      <find>c</find>
-      <find>customer start</find>
     </findStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -103,8 +140,8 @@
       <list>
         <option value="$PROJECT_DIR$/Zihan/Order.java" />
         <option value="$PROJECT_DIR$/Zihan/Machine.java" />
-        <option value="$PROJECT_DIR$/Zihan/Simulation.java" />
         <option value="$PROJECT_DIR$/Zihan/Cook.java" />
+        <option value="$PROJECT_DIR$/Zihan/Simulation.java" />
         <option value="$PROJECT_DIR$/Zihan/Store.java" />
         <option value="$PROJECT_DIR$/Zihan/Customer.java" />
       </list>
@@ -294,9 +331,6 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="ad61106b-afd4-473d-a32c-f980003de352" name="Default" comment="" />
@@ -312,12 +346,12 @@
       <workItem from="1508379555823" duration="1228000" />
       <workItem from="1508380921140" duration="184000" />
       <workItem from="1508381190278" duration="6141000" />
-      <workItem from="1508394101607" duration="3469000" />
+      <workItem from="1508394101607" duration="14000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32210000" />
+    <option name="totallyTimeSpent" value="28755000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="0" />
@@ -325,7 +359,6 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930514" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -348,6 +381,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930514" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -404,6 +438,7 @@
             <element signature="method#machineCookingFood#0;class#SimulationEvent#0" expanded="false" />
             <element signature="method#machineDoneFood#0;class#SimulationEvent#0" expanded="false" />
             <element signature="method#machineEnding#0;class#SimulationEvent#0" expanded="false" />
+            <element signature="method#toString#0;class#SimulationEvent#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -412,10 +447,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="864">
           <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding>
-            <element signature="e#2382#2383#0" expanded="true" />
-            <element signature="e#2411#2412#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -447,7 +479,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="method#main#0;class#Simulation#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -498,6 +532,7 @@
             <element signature="method#machineCookingFood#0;class#SimulationEvent#0" expanded="false" />
             <element signature="method#machineDoneFood#0;class#SimulationEvent#0" expanded="false" />
             <element signature="method#machineEnding#0;class#SimulationEvent#0" expanded="false" />
+            <element signature="method#toString#0;class#SimulationEvent#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -506,10 +541,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="816">
           <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding>
-            <element signature="e#2382#2383#0" expanded="true" />
-            <element signature="e#2411#2412#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -541,7 +573,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="method#main#0;class#Simulation#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -592,6 +626,7 @@
             <element signature="method#machineCookingFood#0;class#SimulationEvent#0" expanded="false" />
             <element signature="method#machineDoneFood#0;class#SimulationEvent#0" expanded="false" />
             <element signature="method#machineEnding#0;class#SimulationEvent#0" expanded="false" />
+            <element signature="method#toString#0;class#SimulationEvent#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -600,10 +635,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="816">
           <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding>
-            <element signature="e#2382#2383#0" expanded="true" />
-            <element signature="e#2411#2412#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -635,7 +667,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="method#main#0;class#Simulation#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -662,6 +696,7 @@
             <element signature="method#machineCookingFood#0;class#SimulationEvent#0" expanded="false" />
             <element signature="method#machineDoneFood#0;class#SimulationEvent#0" expanded="false" />
             <element signature="method#machineEnding#0;class#SimulationEvent#0" expanded="false" />
+            <element signature="method#toString#0;class#SimulationEvent#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -670,10 +705,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="792">
           <caret line="34" column="21" lean-forward="false" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
-          <folding>
-            <element signature="e#2382#2383#0" expanded="true" />
-            <element signature="e#2411#2412#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -705,7 +737,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="962">
           <caret line="52" column="32" lean-forward="false" selection-start-line="52" selection-start-column="32" selection-end-line="52" selection-end-column="32" />
-          <folding />
+          <folding>
+            <element signature="method#main#0;class#Simulation#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -732,6 +766,7 @@
             <element signature="method#machineCookingFood#0;class#SimulationEvent#0" expanded="false" />
             <element signature="method#machineDoneFood#0;class#SimulationEvent#0" expanded="false" />
             <element signature="method#machineEnding#0;class#SimulationEvent#0" expanded="false" />
+            <element signature="method#toString#0;class#SimulationEvent#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -748,10 +783,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1534">
           <caret line="63" column="9" lean-forward="true" selection-start-line="63" selection-start-column="9" selection-end-line="63" selection-end-column="9" />
-          <folding>
-            <element signature="e#2382#2383#0" expanded="true" />
-            <element signature="e#2411#2412#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -775,11 +807,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="method#main#0;class#Simulation#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Zihan/Order.java" />
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-9.0.1.jdk/Contents/Home/lib/src.zip!/java.base/java/lang/Object.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8543">
+          <caret line="515" column="16" lean-forward="true" selection-start-line="515" selection-start-column="16" selection-end-line="515" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Zihan/FoodType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
@@ -813,8 +854,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Zihan/SimulationEvent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-411">
-          <caret line="251" column="33" lean-forward="false" selection-start-line="251" selection-start-column="24" selection-end-line="251" selection-end-column="33" />
+        <state relative-caret-position="1008">
+          <caret line="82" column="5" lean-forward="false" selection-start-line="82" selection-start-column="5" selection-end-line="82" selection-end-column="5" />
           <folding>
             <element signature="class#EventType#0;class#SimulationEvent#0" expanded="false" />
             <element signature="method#SimulationEvent#0;class#SimulationEvent#0" expanded="false" />
@@ -834,68 +875,62 @@
             <element signature="method#machineCookingFood#0;class#SimulationEvent#0" expanded="false" />
             <element signature="method#machineDoneFood#0;class#SimulationEvent#0" expanded="false" />
             <element signature="method#machineEnding#0;class#SimulationEvent#0" expanded="false" />
+            <element signature="method#toString#0;class#SimulationEvent#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Zihan/Validate.java">
+    <entry file="file://$PROJECT_DIR$/Zihan/Simulation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="40" column="47" lean-forward="false" selection-start-line="40" selection-start-column="47" selection-end-line="40" selection-end-column="47" />
-          <folding />
+        <state relative-caret-position="3168">
+          <caret line="136" column="31" lean-forward="false" selection-start-line="136" selection-start-column="31" selection-end-line="136" selection-end-column="31" />
+          <folding>
+            <element signature="method#main#0;class#Simulation#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Zihan/Machine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
+        <state relative-caret-position="1320">
           <caret line="55" column="31" lean-forward="false" selection-start-line="55" selection-start-column="31" selection-end-line="55" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Zihan/Cook.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1416">
+          <caret line="61" column="49" lean-forward="false" selection-start-line="61" selection-start-column="49" selection-end-line="61" selection-end-column="49" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Zihan/Store.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="5" column="11" lean-forward="false" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+        <state relative-caret-position="600">
+          <caret line="25" column="20" lean-forward="false" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
           <folding>
-            <element signature="e#595#596#0" expanded="true" />
-            <element signature="e#622#623#0" expanded="true" />
+            <element signature="e#485#486#0" expanded="true" />
+            <element signature="e#512#513#0" expanded="true" />
+            <element signature="e#543#544#0" expanded="true" />
+            <element signature="e#570#571#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-9.0.1.jdk/Contents/Home/lib/src.zip!/java.base/java/lang/Object.java">
+    <entry file="file://$PROJECT_DIR$/Zihan/Validate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="515" column="0" lean-forward="false" selection-start-line="515" selection-start-column="0" selection-end-line="515" selection-end-column="0" />
+        <state relative-caret-position="960">
+          <caret line="40" column="47" lean-forward="false" selection-start-line="40" selection-start-column="47" selection-end-line="40" selection-end-column="47" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Zihan/Customer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-62">
-          <caret line="64" column="43" lean-forward="true" selection-start-line="64" selection-start-column="43" selection-end-line="64" selection-end-column="43" />
-          <folding>
-            <element signature="e#2382#2383#0" expanded="true" />
-            <element signature="e#2411#2412#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Zihan/Cook.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="19" column="6" lean-forward="true" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Zihan/Simulation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-493">
-          <caret line="133" column="19" lean-forward="false" selection-start-line="133" selection-start-column="18" selection-end-line="133" selection-end-column="19" />
+        <state relative-caret-position="-545">
+          <caret line="14" column="35" lean-forward="false" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
           <folding />
         </state>
       </provider>

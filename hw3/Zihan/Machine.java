@@ -51,7 +51,7 @@ public class Machine {
         while (curNum >= capacityIn) {
             wait();
         }
-        azcurNum++;
+        curNum++;
         Thread makeFoodThread = new Thread(new CookAnItem());
         makeFoodThread.start();
 //        makeFoodThread.join();
@@ -63,12 +63,12 @@ public class Machine {
 		public void run() {
 			try {
 				//YOUR CODE GOES HERE...
-                switch (machineFoodType.name) {
-                    case "burger": Thread.sleep(600);
-                    case "fries": Thread.sleep(450);
-                    case "coffee": Thread.sleep(150);
-                }
-
+//                switch (machineFoodType.name) {
+//                    case "burger": Thread.sleep(600);
+//                    case "fries": Thread.sleep(450);
+//                    case "coffee": Thread.sleep(150);
+//                }
+                Thread.sleep(machineFoodType.cookTimeMS);
 			} catch(InterruptedException e) { }
 		}
 	}

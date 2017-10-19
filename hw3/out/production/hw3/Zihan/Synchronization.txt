@@ -1,0 +1,6 @@
+In my design, the Simulation class works as the shop and monitor the orders, table, customer, cook and machine.
+To make the project thread-safe, my solution is below:
+1. Separate setter and getter of the global resources in every class not to slow down other code where data race is acceptable
+2. Orders in Simulation is shared by customer and cook. So I have to synchronize the setter and getter of orders in these two class.
+3. Table numbers is only shared by all customer. So table need to be locked by a particular lock by locking the setter and getter of the customers
+4. Machines are shared by all cooks so machines need a lock by locking the setter and getter of cooks

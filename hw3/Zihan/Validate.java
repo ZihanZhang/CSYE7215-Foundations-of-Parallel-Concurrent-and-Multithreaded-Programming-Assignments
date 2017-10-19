@@ -49,6 +49,72 @@ public class Validate {
 			 */
 
 //			check(events.get());
+            System.out.println("****************************************************");
+            System.out.println("Validation:");
+            int ne = 0;
+            for (SimulationEvent s: events) {
+                if (s.event == SimulationEvent.EventType.CustomerStarting) {
+                    ne++;
+                }
+            }
+            System.out.println("Total Number of Eaters: " + ne);
+            int nc = 0;
+            for (SimulationEvent s: events) {
+                if (s.event == SimulationEvent.EventType.CookStarting) {
+                    nc++;
+                }
+            }
+            System.out.println("Total Number of Cooks: " + nc);
+            System.out.println("Check Eater Submit One Order: ");
+            int os = 0;
+            for (SimulationEvent s: events) {
+                if (s.event == SimulationEvent.EventType.CustomerReceivedOrder) {
+                    os++;
+                }
+            }
+            System.out.println(os == ne);
+            System.out.println("Check Receiving Order and Cook Completing Order: ");
+            for (int j = 1; j < ne; j++) {
+                System.out.println("Checking Eater " + j);
+                int receivingindex = 0, completingindex = 0;
+                for (int i = 0; i < events.size(); i++) {
+                    if (events.get(i).event == SimulationEvent.EventType.CookCompletedOrder && events.get(i).orderNumber == j) {
+                        completingindex = i;
+                    }
+                    if (events.get(i).event == SimulationEvent.EventType.CustomerReceivedOrder && events.get(i).orderNumber == j) {
+                        receivingindex = i;
+                    }
+                }
+                if (completingindex < receivingindex) {
+                    System.out.println(true);
+                }
+                else {
+                    System.out.println(false);
+                }
+            }
+
+            System.out.println("Check Receiving Order and Leaving Coffee: ");
+            for (int j = 1; j < ne; j++) {
+                System.out.println("Checking Eater " + j);
+                int receivingindex = 0, leavingindex = 0;
+                for (int i = 0; i < events.size(); i++) {
+                    if (events.get(i).event == SimulationEvent.EventType.CustomerReceivedOrder && events.get(i).orderNumber == j) {
+                        receivingindex = i;
+                    }
+                    if (events.get(i).event == SimulationEvent.EventType.CustomerLeavingCoffeeShop && events.get(i).customer.getOrderNum() == j) {
+                        leavingindex = i;
+                    }
+                }
+                if (leavingindex > receivingindex) {
+                    System.out.println(true);
+                }
+                else {
+                    System.out.println(false);
+                }
+            }
+
+
+
 
 			return true;
 		} catch (InvalidSimulationException e) {

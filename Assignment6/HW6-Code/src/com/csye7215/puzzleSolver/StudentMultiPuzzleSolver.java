@@ -33,22 +33,22 @@ public class StudentMultiPuzzleSolver extends SkippingPuzzleSolver
 //    private int numOfThreads;
 
 //    Has to be synchronized
-//    private List<Direction> solutionPath
+    private List<Direction> solutionPath;
 
 //    Object numOfThreadsLock = new Object()
-//    Object solutionPathLock = new Object()
-
-    public class SolutionNode
-    {
-        public SolutionNode parent;
-        public Choice choice;
-
-        public SolutionNode(SolutionNode parent, Choice choice)
-        {
-            this.parent = parent;
-            this.choice = choice;
-        }
-    }
+//    Object solutionPathLock = new Objecnt()
+//
+//    public class SolutionNode
+//    {
+//        public SolutionNode parent;
+//        public Choice choice;
+//
+//        public SolutionNode(SolutionNode parent, Choice choice)
+//        {
+//            this.parent = parent;
+//            this.choice = choice;
+//        }
+//    }
 
 
     public StudentMultiPuzzleSolver(Puzzle puzzle)
@@ -72,13 +72,18 @@ public class StudentMultiPuzzleSolver extends SkippingPuzzleSolver
         //catch exception: return pathToFullPath()
 
         // TODO: Implement your code here
-        throw new RuntimeException("Not yet implemented!");
+
+        Position curPosition = puzzle.getStart();
+
+        spawnTask(curPosition);
+//        throw new RuntimeException("Not yet implemented!");
+        return solutionPath;
     }
 
     //Precondition: None
     //Postcondition: None
     //Exception: None
-    private void spawnTask(SolutionNode node){
+    private void spawnTask(Position curPos){
         //IF exit found {
         //    throw exception
         //}
@@ -101,5 +106,34 @@ public class StudentMultiPuzzleSolver extends SkippingPuzzleSolver
         //          solutionPath = pathToFullPath()
         //      }
         //END
+
+        LinkedList<Direction> moves = puzzle.getMoves(curPos);
+
+        for (Direction d: moves) {
+            exec.execute(new Runnable() {
+                @Override
+                public void run() {
+                    Choice newChoice = null;
+                    try {
+                        newChoice = follow(curPos, d);
+                        spawnTask(newChoice.at);
+                    } catch (SolutionFound solutionFound) {
+                        System.out.println("Found End");
+                        Choice rChoice = newChoice;
+                        while (rChoice.from != null) {
+                            solutionPath.add(0, rChoice.from.reverse());
+                            try {
+                                rChoice = follow(rChoice.at, rChoice.from);
+                            } catch (SolutionFound solutionFound1) {
+                                //Useless exception, it will never happen
+//                                solutionFound1.printStackTrace();
+                            }
+                        }
+
+                        solutionFound.printStackTrace();
+                    }
+                }
+            });
+        }
     }
 }

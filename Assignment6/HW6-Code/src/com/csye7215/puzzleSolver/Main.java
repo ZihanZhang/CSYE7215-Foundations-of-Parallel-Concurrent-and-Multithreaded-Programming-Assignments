@@ -32,8 +32,8 @@ public class Main
         {
         		new STPuzzleSolverRec(puzzle),
                 new STPuzzleSolverDFS(puzzle),
-                new STPuzzleSolverBFS(puzzle), 
-                //new StudentMTPuzzleSolver(puzzle),  //uncomment this line when you are ready to test yours
+                new STPuzzleSolverBFS(puzzle),
+                new StudentMultiPuzzleSolver1(puzzle),  //uncomment this line when you are ready to test yours
         };
 
         for (PuzzleSolver solver : solvers)
@@ -79,7 +79,7 @@ public class Main
  
         //These lines are to run via Eclipse without a command prompt
         String puzzleLocationNotInProjectFolder = "maze-dist//"; //replace this with your puzzle directory
-        String whichPuzzleToUse = "200x200.mz"; //which puzzle file to load
+        String whichPuzzleToUse = "6x6.mz"; //which puzzle file to load
         String[] replaceArgs = {puzzleLocationNotInProjectFolder+whichPuzzleToUse};
         args = replaceArgs;
         
@@ -101,7 +101,7 @@ public class Main
         
         // Uncomment to use puzzle display
 //        m.initDisplay();
-        
+
         m.solve();
     }
     

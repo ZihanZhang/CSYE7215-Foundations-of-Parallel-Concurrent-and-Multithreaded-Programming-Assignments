@@ -39,8 +39,13 @@ public class StudentMultiPuzzleSolver1 extends SkippingPuzzleSolver
 
         Position firstPosition = puzzle.getStart();
 
-        Node resultNode = fjPool.invoke(new searchTask(getFirstChoice(), Direction.SOUTH));
-        
+        Choice firstChoice = getFirstChoice();
+        Node resultNode = fjPool.invoke(new searchTask(firstChoice, firstChoice.from));
+
+//        for (int i = 0; i < resultNode.curSolutionPath.size(); i++) {
+//            System.out.println(resultNode.curSolutionPath.get(i).name());
+//        }
+//        return resultNode.curSolutionPath;
         return pathToFullPath(resultNode.curSolutionPath);
 //        throw new RuntimeException("Not yet implemented!");
     }
@@ -79,7 +84,7 @@ public class StudentMultiPuzzleSolver1 extends SkippingPuzzleSolver
                     taskList.add(st);
                 } catch (SolutionFound solutionFound) {
                     thisNode.onPath = true;
-                    thisNode.curSolutionPath.add(curDirection);
+                    thisNode.curSolutionPath.add(d);
                     return thisNode;
                 }
             }
@@ -88,7 +93,7 @@ public class StudentMultiPuzzleSolver1 extends SkippingPuzzleSolver
                 Node newNode = (Node)s.join();
                 if (newNode.onPath) {
                     thisNode.curSolutionPath = newNode.curSolutionPath;
-                    thisNode.curSolutionPath.add(0, curDirection);
+                    thisNode.curSolutionPath.add(0, s.curDirection);
                     thisNode.onPath = true;
                     return thisNode;
                 }

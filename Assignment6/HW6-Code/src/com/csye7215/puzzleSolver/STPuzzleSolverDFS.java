@@ -69,6 +69,16 @@ public class STPuzzleSolverDFS extends SkippingPuzzleSolver
             }
 
             if (puzzle.display != null) puzzle.display.updateDisplay();
+
+//            for (Direction d: solutionPath) {
+//                System.out.println(d.name());
+//            }
+
+//            System.out.println("****************************8");
+//
+//            for (Direction d: pathToFullPath(solutionPath)) {
+//                System.out.println(d.name());
+//            }
             return pathToFullPath(solutionPath);
         }
     }

@@ -79,7 +79,7 @@ public class Main
  
         //These lines are to run via Eclipse without a command prompt
         String puzzleLocationNotInProjectFolder = "maze-dist//"; //replace this with your puzzle directory
-        String whichPuzzleToUse = "6x6.mz"; //which puzzle file to load
+        String whichPuzzleToUse = "200x100.mz"; //which puzzle file to load
         String[] replaceArgs = {puzzleLocationNotInProjectFolder+whichPuzzleToUse};
         args = replaceArgs;
         

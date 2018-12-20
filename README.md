@@ -1,1 +1,1 @@
-# Assignments in CSYE7215 Parallel & Multithreaded Programming
+Assignments in CSYE7215 Parallel & Multithreaded Programming

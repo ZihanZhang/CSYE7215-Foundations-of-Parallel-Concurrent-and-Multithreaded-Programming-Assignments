@@ -1,9 +1,10 @@
 package com.csye7215.puzzleSolver;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.RecursiveTask;
 
 /**
  * This file needs to hold your solver to be tested. 
@@ -13,93 +14,128 @@ import java.util.concurrent.Executors;
  *   which will either be a reference to a list of steps to take or will
  *   be null if the puzzle cannot be solved.
  */
-
-//The main idea is to parallel the different choices that a node can choose
-//But in case of the puzzle being too large which means too many tasks being created
-//According to the formula, I decided to use mxn(puzzle size) / (N(CPU number) + 1)
-//When the tasks are too small we try single threaded it
-//We spawn one task in every choices
-//In Every node with more than 1 choices, we spawn tasks for every choice.
-
-//Invariant: SolutionNode should be inside the muzzle and should not be into the wall
-//           there is only one executor
-//           SEQUENCIALSIZETARGET cannot be modified
 public class StudentMultiPuzzleSolver extends SkippingPuzzleSolver
 {
-//    Border of parallel and sequential execution
-//    private final int SEQUENCIALSIZETARGET = mxn(puzzle size) / (N(CPU number) + 1)
+    static ForkJoinPool fjPool = new ForkJoinPool();
 
-//    Has to be synchronized
-//    private int numOfThreads;
+    class Node {
+        List<Direction> curSolutionPath = new LinkedList<>();
+        Boolean onPath;
 
-//    Has to be synchronized
-//    private List<Direction> solutionPath
-
-//    Object numOfThreadsLock = new Object()
-//    Object solutionPathLock = new Object()
-
-    public class SolutionNode
-    {
-        public SolutionNode parent;
-        public Choice choice;
-
-        public SolutionNode(SolutionNode parent, Choice choice)
-        {
-            this.parent = parent;
-            this.choice = choice;
+        public Node(List<Direction> curSolutionPath, Boolean onPath) {
+            this.curSolutionPath = curSolutionPath;
+            this.onPath = onPath;
         }
     }
-
 
     public StudentMultiPuzzleSolver(Puzzle puzzle)
     {
         super(puzzle);
     }
 
-    //Precondition:None
-    //Postcondition:return the list of directions of the solution
-    //Exception:None
-    private final Executor exec = Executors.newCachedThreadPool();
     public List<Direction> solve()
     {
-        //Initialize the first choice to start position
-        //for each choices spawn a task to search for it
-        //      spawnTask()
-        //      each task take care of the subtrees from that node
-        //      task: if exit found throw exception
-        //              follow()
-        //              spawn tasks for it's subnodes to do the same thing
-        //catch exception: return pathToFullPath()
-
         // TODO: Implement your code here
-        throw new RuntimeException("Not yet implemented!");
+        Choice firstChoice = getFirstChoice();
+        Node resultNode = fjPool.invoke(new searchTask(firstChoice, firstChoice.from));
+
+//        for (int i = 0; i < resultNode.curSolutionPath.size(); i++) {
+//            System.out.println(resultNode.curSolutionPath.get(i).name());
+//        }
+//        return resultNode.curSolutionPath;
+        return pathToFullPath(resultNode.curSolutionPath);
+//        throw new RuntimeException("Not yet implemented!");
     }
 
-    //Precondition: None
-    //Postcondition: None
-    //Exception: None
-    private void spawnTask(SolutionNode node){
-        //IF exit found {
-        //    throw exception
-        //}
-        //IF numOfThreads > SEQUENCIALSIZETARGET {
-        //      STPuzzleSolverRec()                           This solution is best for small puzzle in sequential part
-        //}
-        //ELSE {
-        //  For getChild(node)
-        //      new Runnable() {
-        //          SolutionNode nxtNode = follow()
-        //          spawnTask(nextNode)
-        //          synchronized(numberOfThreadsLock) {
-        //              numOfThread++;
-        //          }
-        //      }
-        //  End for
-        //END IF
-        //catch exception:
-        //      synchronized(solutionPathLock) {
-        //          solutionPath = pathToFullPath()
-        //      }
-        //END
+    //Get the first choice point from start
+    private Choice getFirstChoice() {
+        Choice firstChoice = null;
+        if (puzzle.getMoves(puzzle.getStart()).size() == 1) {
+            try {
+                firstChoice = follow(puzzle.getStart(), puzzle.getMoves(puzzle.getStart()).getFirst());
+                return firstChoice;
+            } catch (SolutionFound solutionFound) {
+                solutionFound.printStackTrace();
+            }
+        }
+        else {
+            firstChoice = new Choice(puzzle.getStart(), null, puzzle.getMoves(puzzle.getStart()));
+        }
+        return firstChoice;
+    }
+
+    private class searchTask extends RecursiveTask<Node> {
+        Choice choice;
+        Direction curDirection;
+        Node thisNode = new Node(new LinkedList<>(), false);
+        private List<searchTask> taskList = new LinkedList<>();
+        public searchTask(Choice choice, Direction direction) {
+            this.choice = choice;
+            curDirection = direction;
+        }
+        public Node compute() {
+            //If task is too small, make it single threaded using DFS
+            if (choice.at.row < puzzle.getHeight() / 2) {
+                LinkedList<Choice> choiceStack = new LinkedList<Choice>();
+                Choice ch;
+
+                try
+                {
+                    choiceStack.push(firstChoice(choice.at));
+                    while (!choiceStack.isEmpty())
+                    {
+                        ch = choiceStack.peek();
+                        if (ch.isDeadend())
+                        {
+                            // backtrack.
+                            choiceStack.pop();
+                            if (!choiceStack.isEmpty()) choiceStack.peek().choices.pop();
+                            continue;
+                        }
+                        choiceStack.push(follow(ch.at, ch.choices.peek()));
+                    }
+                    // No solution found.
+                    thisNode.onPath = false;
+                    return thisNode;
+                }
+                catch (SolutionFound e) {
+                    Iterator<Choice> iter = choiceStack.iterator();
+                    LinkedList<Direction> solutionPath = new LinkedList<Direction>();
+                    while (iter.hasNext()) {
+                        ch = iter.next();
+                        solutionPath.push(ch.choices.peek());
+                    }
+
+                    thisNode.onPath = true;
+                    thisNode.curSolutionPath = solutionPath;
+                    return thisNode;
+                }
+            }
+
+            //Otherwise use divide and conquer with FolkJoinPool
+            for (Direction d: choice.choices) {
+                try {
+                    Choice newChoice = follow(choice.at, d);
+                    searchTask st = new searchTask(newChoice, d);
+                    st.fork();
+                    taskList.add(st);
+                } catch (SolutionFound solutionFound) {
+                    thisNode.onPath = true;
+                    thisNode.curSolutionPath.add(d);
+                    return thisNode;
+                }
+            }
+
+            for (searchTask s: taskList) {
+                Node newNode = (Node)s.join();
+                if (newNode.onPath) {
+                    thisNode.curSolutionPath = newNode.curSolutionPath;
+                    thisNode.curSolutionPath.add(0, s.curDirection);
+                    thisNode.onPath = true;
+                    return thisNode;
+                }
+            }
+            return thisNode;
+        }
     }
 }

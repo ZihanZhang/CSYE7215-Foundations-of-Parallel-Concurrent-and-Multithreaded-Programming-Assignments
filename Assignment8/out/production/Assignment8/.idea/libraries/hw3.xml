@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="hw3">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/artifacts/hw3_jar/hw3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
